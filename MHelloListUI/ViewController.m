@@ -9,6 +9,7 @@
 #import "ViewController.h"
 #import "EGORefreshViewController.h"
 #import "RefreshViewController.h"
+#import "KVORefreshViewController.h"
 
 @interface ViewController (Table)<UITableViewDataSource, UITableViewDelegate>
 - (void)initDatas;
@@ -60,6 +61,7 @@
 #pragma mark - Init
 - (void)initDatas {
     self.datas = @[@[@"EGO时代的刷新", [EGORefreshViewController class]],
+                   @[@"EGO的KVO升级版", [KVORefreshViewController class]],
                    @[@"下拉刷新", [RefreshViewController class]],
                    ];
 }
