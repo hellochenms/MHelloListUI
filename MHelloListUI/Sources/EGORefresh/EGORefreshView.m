@@ -9,6 +9,7 @@
 #import "EGORefreshView.h"
 
 static double const kHeight = 60;
+static NSTimeInterval const kAnimationDuration = .2;
 
 typedef NS_ENUM(NSUInteger, EGORefreshViewStatus) {
     EGORefreshViewStatusNormal = 0,
@@ -83,9 +84,24 @@ typedef NS_ENUM(NSUInteger, EGORefreshViewStatus) {
 - (void)endRefresh:(UIScrollView *)scrollView {
     self.status = EGORefreshViewStatusNormal;
     
-    [UIView animateWithDuration:0.2 animations:^{
+    [UIView animateWithDuration:kAnimationDuration animations:^{
         UIEdgeInsets inset = scrollView.contentInset;
         inset.top = 0;
+        scrollView.contentInset = inset;
+    }];
+}
+
+- (void)beginRefresh:(UIScrollView *)scrollView {
+    if (self.status == EGORefreshViewStatusLoading) {
+        return;
+    }
+    
+    [UIView animateWithDuration:kAnimationDuration animations:^{
+        scrollView.contentOffset = CGPointMake(0, -kHeight);
+        
+        self.status = EGORefreshViewStatusLoading;
+        UIEdgeInsets inset = scrollView.contentInset;
+        inset.top = kHeight;
         scrollView.contentInset = inset;
     }];
 }
