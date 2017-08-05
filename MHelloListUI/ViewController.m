@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "EGORefreshViewController.h"
 #import "RefreshViewController.h"
 
 @interface ViewController (Table)<UITableViewDataSource, UITableViewDelegate>
@@ -54,11 +55,12 @@
 
 
 #pragma mark -
-#pragma mark - ViewController (Table)
+#pragma mark - (Table)
 @implementation ViewController (Table)
 #pragma mark - Init
 - (void)initDatas {
-    self.datas = @[@[@"下拉刷新", [RefreshViewController class]],
+    self.datas = @[@[@"EGO时代的刷新", [EGORefreshViewController class]],
+                   @[@"下拉刷新", [RefreshViewController class]],
                    ];
 }
 
@@ -87,6 +89,5 @@
     UIViewController *controller = [data[1] new];
     [self.navigationController pushViewController:controller animated:YES];
 }
-
 
 @end

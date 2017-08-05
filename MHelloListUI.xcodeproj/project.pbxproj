@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		906D00031F356728003C7775 /* EGORefreshViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 906D00021F356728003C7775 /* EGORefreshViewController.m */; };
+		906D00061F3568D6003C7775 /* EGORefreshView.m in Sources */ = {isa = PBXBuildFile; fileRef = 906D00051F3568D6003C7775 /* EGORefreshView.m */; };
+		906D000A1F357711003C7775 /* M7TempDataGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 906D00091F357711003C7775 /* M7TempDataGenerator.m */; };
 		906DFFE71F355D9A003C7775 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 906DFFE61F355D9A003C7775 /* main.m */; };
 		906DFFEA1F355D9A003C7775 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 906DFFE91F355D9A003C7775 /* AppDelegate.m */; };
 		906DFFED1F355D9A003C7775 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 906DFFEC1F355D9A003C7775 /* ViewController.m */; };
@@ -17,6 +20,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		906D00011F356728003C7775 /* EGORefreshViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGORefreshViewController.h; sourceTree = "<group>"; };
+		906D00021F356728003C7775 /* EGORefreshViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGORefreshViewController.m; sourceTree = "<group>"; };
+		906D00041F3568D6003C7775 /* EGORefreshView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGORefreshView.h; sourceTree = "<group>"; };
+		906D00051F3568D6003C7775 /* EGORefreshView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGORefreshView.m; sourceTree = "<group>"; };
+		906D00081F357711003C7775 /* M7TempDataGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M7TempDataGenerator.h; sourceTree = "<group>"; };
+		906D00091F357711003C7775 /* M7TempDataGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M7TempDataGenerator.m; sourceTree = "<group>"; };
 		906DFFE21F355D9A003C7775 /* MHelloListUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MHelloListUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		906DFFE61F355D9A003C7775 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		906DFFE81F355D9A003C7775 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -42,6 +51,28 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		906D00001F356719003C7775 /* EGORefresh */ = {
+			isa = PBXGroup;
+			children = (
+				906D00011F356728003C7775 /* EGORefreshViewController.h */,
+				906D00021F356728003C7775 /* EGORefreshViewController.m */,
+				906D00041F3568D6003C7775 /* EGORefreshView.h */,
+				906D00051F3568D6003C7775 /* EGORefreshView.m */,
+			);
+			name = EGORefresh;
+			path = Sources/EGORefresh;
+			sourceTree = "<group>";
+		};
+		906D00071F35770B003C7775 /* M2 */ = {
+			isa = PBXGroup;
+			children = (
+				906D00081F357711003C7775 /* M7TempDataGenerator.h */,
+				906D00091F357711003C7775 /* M7TempDataGenerator.m */,
+			);
+			name = M2;
+			path = Sources/M2;
+			sourceTree = "<group>";
+		};
 		906DFFD91F355D9A003C7775 = {
 			isa = PBXGroup;
 			children = (
@@ -66,6 +97,8 @@
 				906DFFEB1F355D9A003C7775 /* ViewController.h */,
 				906DFFEC1F355D9A003C7775 /* ViewController.m */,
 				906DFFEE1F355D9A003C7775 /* Main.storyboard */,
+				906D00071F35770B003C7775 /* M2 */,
+				906D00001F356719003C7775 /* EGORefresh */,
 				906DFFFC1F355E64003C7775 /* Refresh */,
 				906DFFF11F355D9A003C7775 /* Assets.xcassets */,
 				906DFFF31F355D9A003C7775 /* LaunchScreen.storyboard */,
@@ -166,8 +199,11 @@
 			files = (
 				906DFFFF1F355E74003C7775 /* RefreshViewController.m in Sources */,
 				906DFFED1F355D9A003C7775 /* ViewController.m in Sources */,
+				906D00061F3568D6003C7775 /* EGORefreshView.m in Sources */,
 				906DFFEA1F355D9A003C7775 /* AppDelegate.m in Sources */,
+				906D000A1F357711003C7775 /* M7TempDataGenerator.m in Sources */,
 				906DFFE71F355D9A003C7775 /* main.m in Sources */,
+				906D00031F356728003C7775 /* EGORefreshViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
