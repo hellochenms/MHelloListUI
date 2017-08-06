@@ -1,44 +1,45 @@
 //
-//  KVORefreshView.m
+//  KVOLoadMoreView.m
 //  MHelloListUI
 //
 //  Created by chenms on 17/8/5.
 //  Copyright © 2017年 chenms.m2. All rights reserved.
 //
 
-#import "KVORefreshView.h"
+#import "KVOLoadMoreView.h"
 
 static double const kHeight = 60;
 static double const kAnimationDuration = .2;
 
 static NSString * const kKeyPathContentOffset = @"contentOffset";
+static NSString * const kKeyPathContentSize = @"contentSize";
 static NSString * const kKeyPathPanState = @"state";
 
-typedef NS_ENUM(NSUInteger, KVORefreshViewStatus) {
-    KVORefreshViewStatusNormal = 0,
-    KVORefreshViewStatusPulling,
-    KVORefreshViewStatusLoading,
+typedef NS_ENUM(NSUInteger, KVOLoadMoreViewStatus) {
+    KVOLoadMoreViewStatusNormal = 0,
+    KVOLoadMoreViewStatusPulling,
+    KVOLoadMoreViewStatusLoading,
 };
 
-@interface KVORefreshView ()
-@property (nonatomic) KVORefreshViewStatus status;
+@interface KVOLoadMoreView ()
+@property (nonatomic) KVOLoadMoreViewStatus status;
 @property (nonatomic) UILabel *label;
 @property (nonatomic, weak) UIScrollView *scrollView;
 @property (nonatomic) BOOL originalAlwaysBounceVertical;
-@property (strong, nonatomic) UIPanGestureRecognizer *pan; // 无法确定系统释放时机，可能导致KVO问题，故用strong变量维护
+@property (nonatomic) UIPanGestureRecognizer *pan;
 @end
 
-@implementation KVORefreshView
+@implementation KVOLoadMoreView
 
-+ (instancetype)refreshView {
++ (instancetype)loadMoreView {
     return [self new];
 }
 
 - (instancetype)initWithFrame:(CGRect)frame {
-    self = [super initWithFrame:CGRectMake(0, -kHeight, CGRectGetWidth([UIScreen mainScreen].bounds), kHeight)];
+    self = [super initWithFrame:CGRectMake(0, 0, CGRectGetWidth([UIScreen mainScreen].bounds), kHeight)];
     if (self) {
         self.backgroundColor = [UIColor brownColor];
-        self.status = KVORefreshViewStatusNormal;
+        self.status = KVOLoadMoreViewStatusNormal;
         
         [self addSubview:self.label];
         self.label.frame = self.bounds;
@@ -50,18 +51,22 @@ typedef NS_ENUM(NSUInteger, KVORefreshViewStatus) {
 #pragma mark - Life Cycle
 - (void)willMoveToSuperview:(UIView *)newSuperview {
     [super willMoveToSuperview:newSuperview];
+    
     if (newSuperview && ![newSuperview isKindOfClass:[UIScrollView class]]) {
         return;
     }
-
+    
     self.scrollView.alwaysBounceVertical = self.originalAlwaysBounceVertical;
     [self removeKVO];
+    
     
     if (newSuperview) {
         self.scrollView = (UIScrollView *)newSuperview;
         self.originalAlwaysBounceVertical = self.scrollView.alwaysBounceVertical;
         self.scrollView.alwaysBounceVertical = YES;
         [self addKVO];
+        
+        [self scrollViewDidChangeContentSize:self.scrollView];
     }
 }
 
@@ -69,35 +74,38 @@ typedef NS_ENUM(NSUInteger, KVORefreshViewStatus) {
 - (void)addKVO {
     NSKeyValueObservingOptions options = NSKeyValueObservingOptionOld|NSKeyValueObservingOptionNew;
     [self.scrollView addObserver:self forKeyPath:kKeyPathContentOffset options:options context:nil];
+    [self.scrollView addObserver:self forKeyPath:kKeyPathContentSize options:options context:nil];
     self.pan = self.scrollView.panGestureRecognizer;
     [self.pan addObserver:self forKeyPath:kKeyPathPanState options:options context:nil];
 }
 
 - (void)removeKVO {
-    // 不亲自写一下，还真不知道为什么用self.superview，为什么手动维护pan
     [self.superview removeObserver:self forKeyPath:kKeyPathContentOffset];
+    [self.superview removeObserver:self forKeyPath:kKeyPathContentSize];
     [self.pan removeObserver:self forKeyPath:kKeyPathPanState];
     self.pan = nil;
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
-    if (self.hidden) {
-        return;
-    }
-    if ([keyPath isEqualToString:kKeyPathContentOffset]) {
-        [self scrollViewDidScroll:self.scrollView];
-    } else if ([keyPath isEqualToString:kKeyPathPanState]) {
-        if (self.scrollView.panGestureRecognizer.state == UIGestureRecognizerStateEnded) {
-            [self scrollViewDidEndDragging:self.scrollView];
+    if (!self.hidden) {
+        if ([keyPath isEqualToString:kKeyPathContentOffset]) {
+            [self scrollViewDidScroll:self.scrollView];
+        } else if ([keyPath isEqualToString:kKeyPathPanState]) {
+            if (self.scrollView.panGestureRecognizer.state == UIGestureRecognizerStateEnded) {
+                [self scrollViewDidEndDragging:self.scrollView];
+            }
         }
+    }
+    if ([keyPath isEqualToString:kKeyPathContentSize]) {
+        [self scrollViewDidChangeContentSize:self.scrollView];
     }
 }
 
 #pragma mark - ScrollView
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    if (self.status == KVORefreshViewStatusLoading) {
+    if (self.status == KVOLoadMoreViewStatusLoading) {
         UIEdgeInsets inset = scrollView.contentInset;
-        inset.top = fmin(fmax(scrollView.contentOffset.y * -1, 0), kHeight);
+        inset.bottom = fmin(fmax(CGRectGetHeight(self.scrollView.bounds) + scrollView.contentOffset.y - self.scrollView.contentSize.height, 0), kHeight);
         scrollView.contentInset = inset;
         return;
     }
@@ -106,72 +114,70 @@ typedef NS_ENUM(NSUInteger, KVORefreshViewStatus) {
         return;
     }
     
-    if (scrollView.contentOffset.y < -kHeight) {
-        if (self.status == KVORefreshViewStatusNormal) {
-            self.status = KVORefreshViewStatusPulling;
+    if (CGRectGetHeight(self.scrollView.bounds) + scrollView.contentOffset.y - self.scrollView.contentSize.height > kHeight) {
+        if (self.status == KVOLoadMoreViewStatusNormal) {
+            self.status = KVOLoadMoreViewStatusPulling;
         }
     } else {
-        if (self.status == KVORefreshViewStatusPulling) {
-            self.status = KVORefreshViewStatusNormal;
+        if (self.status == KVOLoadMoreViewStatusPulling) {
+            self.status = KVOLoadMoreViewStatusNormal;
         }
     }
 }
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView {
-    if (self.status == KVORefreshViewStatusLoading) {
+    if (self.status == KVOLoadMoreViewStatusLoading) {
         return;
     }
     
-    if (scrollView.contentOffset.y < -kHeight) {
-        if (self.didTriggerRefreshBlock) {
-            self.status = KVORefreshViewStatusLoading;
+    if (CGRectGetHeight(self.scrollView.bounds) + scrollView.contentOffset.y - self.scrollView.contentSize.height > kHeight) {
+        if (self.didTriggerLoadMoreBlock) {
+            self.status = KVOLoadMoreViewStatusLoading;
             UIEdgeInsets inset = scrollView.contentInset;
-            inset.top = kHeight;
+            inset.bottom = kHeight;
             scrollView.contentInset = inset;
-            self.didTriggerRefreshBlock();
+            self.didTriggerLoadMoreBlock();
         }
     }
 }
 
+- (void)scrollViewDidChangeContentSize:(UIScrollView *)scrollView {
+    CGRect frame = self.frame;
+    frame.origin.y = self.scrollView.contentSize.height;
+    self.frame = frame;
+    
+    if (scrollView.contentSize.height >= scrollView.bounds.size.height) {
+        self.hidden = NO;
+    } else {
+        self.hidden = YES;
+    }
+}
+
 #pragma mark - Public
-- (void)endRefresh{
-    self.status = KVORefreshViewStatusNormal;
+- (void)endLoadMore {
+    self.status = KVOLoadMoreViewStatusNormal;
     
     [UIView animateWithDuration:kAnimationDuration animations:^{
         UIEdgeInsets inset = self.scrollView.contentInset;
-        inset.top = 0;
+        inset.bottom = 0;
         self.scrollView.contentInset = inset;
     }];
 }
 
-- (void)beginRefresh {
-    if (self.status == KVORefreshViewStatusLoading) {
-        return;
-    }
-    
-    [UIView animateWithDuration:kAnimationDuration animations:^{
-        self.scrollView.contentOffset = CGPointMake(0, -kHeight);
-        
-        self.status = KVORefreshViewStatusLoading;
-        UIEdgeInsets inset = self.scrollView.contentInset;
-        inset.top = kHeight;
-        self.scrollView.contentInset = inset;
-    }];
-}
 
 #pragma mark - Status
-- (void)setStatus:(KVORefreshViewStatus)status {
+- (void)setStatus:(KVOLoadMoreViewStatus)status {
     _status = status;
     
     switch (status) {
-        case KVORefreshViewStatusNormal:
-            self.label.text = @"下拉即可刷新";
+        case KVOLoadMoreViewStatusNormal:
+            self.label.text = @"上拉即可加载";
             break;
-        case KVORefreshViewStatusPulling:
-            self.label.text = @"松开即可刷新";
+        case KVOLoadMoreViewStatusPulling:
+            self.label.text = @"松开即可加载";
             break;
-        case KVORefreshViewStatusLoading:
-            self.label.text = @"刷新中";
+        case KVOLoadMoreViewStatusLoading:
+            self.label.text = @"加载中";
             break;
         default:
             break;

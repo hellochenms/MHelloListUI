@@ -1,27 +1,30 @@
 //
-//  KVORefreshViewController.m
+//  KVOLoadMoreViewController.m
 //  MHelloListUI
 //
-//  Created by chenms on 17/8/5.
+//  Created by chenms on 17/8/kPage.
 //  Copyright © 2017年 chenms.m2. All rights reserved.
 //
 
-#import "KVORefreshViewController.h"
-#import "KVORefreshView.h"
+#import "KVOLoadMoreViewController.h"
+#import "KVOLoadMoreView.h"
 #import "M7TempDataGenerator.h"
 
-@interface KVORefreshViewController (Table)<UITableViewDataSource, UITableViewDelegate>
+static NSInteger const kPage = 5;
+
+@interface KVOLoadMoreViewController (Table)<UITableViewDataSource, UITableViewDelegate>
 - (void)initDatas;
 @end
 
-@interface KVORefreshViewController ()
+@interface KVOLoadMoreViewController ()
 @property (nonatomic) UITableView *tableView;
 @property (nonatomic) NSMutableArray *datas;
-@property (nonatomic) KVORefreshView *refreshView;
+@property (nonatomic) KVOLoadMoreView *loadMoreView;
 @property (nonatomic) UIButton *refreshButton;
+@property (nonatomic) UIButton *clearButton;
 @end
 
-@implementation KVORefreshViewController
+@implementation KVOLoadMoreViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -35,33 +38,47 @@
 
 #pragma mark - Init
 - (void)addMySubviews {
-    [self.tableView addSubview:self.refreshView];
+    [self.tableView addSubview:self.loadMoreView];
     [self.view addSubview:self.tableView];
     
     [self.view addSubview:self.refreshButton];
+    [self.view addSubview:self.clearButton];
 }
 
 #pragma mark - Life Cycle
 - (void)viewWillLayoutSubviews {
     self.tableView.frame = CGRectMake(0, 64, CGRectGetWidth(self.view.bounds), CGRectGetHeight(self.view.bounds) - 64);
+    
     self.refreshButton.frame = CGRectMake(CGRectGetWidth(self.view.bounds) - 20 - 80, 64 + 60 + 20, 80, 40);
+    self.clearButton.frame = CGRectMake(CGRectGetWidth(self.view.bounds) - 20 - 80, CGRectGetMaxY(self.refreshButton.frame) + 20, 80, 40);
+}
+
+#pragma mark - Load data
+- (void)loadMoreData {
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self.datas addObjectsFromArray:[M7TempDataGenerator sameRandomNumberTextArrayForCount:kPage]];
+        [self.tableView reloadData];
+        [self.loadMoreView endLoadMore];
+    });
 }
 
 #pragma mark - Event
 - (void)onTapRefresh {
     [self refreshData];
-    [self.refreshView beginRefresh];
+}
+
+- (void)onTapClear {
+    [self.datas removeAllObjects];
+    [self.tableView reloadData];
 }
 
 #pragma mark - Load data
 - (void)refreshData {
-    __weak typeof(self) weakSelf = self;
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [weakSelf.datas removeAllObjects];
-        [weakSelf.datas addObjectsFromArray:[M7TempDataGenerator sameRandomNumberTextArrayForCount:20]];
-        [weakSelf.tableView reloadData];
-        [weakSelf.refreshView endRefresh];
-    });
+    NSMutableArray *datas = [NSMutableArray array];
+    [datas addObjectsFromArray:[M7TempDataGenerator sameRandomNumberTextArrayForCount:kPage]];
+    [datas addObjectsFromArray:self.datas];
+    self.datas = datas;
+    [self.tableView reloadData];
 }
 
 #pragma mark - Getter
@@ -75,16 +92,16 @@
     return _tableView;
 }
 
-- (KVORefreshView *)refreshView {
-    if (!_refreshView) {
-        _refreshView = [KVORefreshView refreshView];
+- (KVOLoadMoreView *)loadMoreView {
+    if (!_loadMoreView) {
+        _loadMoreView = [KVOLoadMoreView loadMoreView];
         __weak typeof(self) weakSelf = self;
-        _refreshView.didTriggerRefreshBlock = ^{
-            [weakSelf refreshData];
+        _loadMoreView.didTriggerLoadMoreBlock = ^{
+            [weakSelf loadMoreData];
         };
     }
     
-    return _refreshView;
+    return _loadMoreView;
 }
 
 - (UIButton *)refreshButton {
@@ -98,15 +115,26 @@
     return _refreshButton;
 }
 
+- (UIButton *)clearButton {
+    if (!_clearButton) {
+        _clearButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        _clearButton.backgroundColor = [UIColor brownColor];
+        [_clearButton setTitle:@"清空" forState:UIControlStateNormal];
+        [_clearButton addTarget:self action:@selector(onTapClear) forControlEvents:UIControlEventTouchUpInside];
+    }
+    
+    return _clearButton;
+}
+
 @end
 
 #pragma mark -
 #pragma mark - (Table)
-@implementation KVORefreshViewController (Table)
+@implementation KVOLoadMoreViewController (Table)
 #pragma mark - Init
 - (void)initDatas {
     self.datas = [NSMutableArray array];
-    [self.datas addObjectsFromArray:[M7TempDataGenerator sameRandomNumberTextArrayForCount:20]];
+    [self.datas addObjectsFromArray:[M7TempDataGenerator sameRandomNumberTextArrayForCount:kPage]];
 }
 
 #pragma mark - UITableViewDataSource

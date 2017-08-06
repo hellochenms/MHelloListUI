@@ -11,6 +11,6 @@
 @interface KVORefreshView : UIView
 @property (nonatomic, copy) void(^didTriggerRefreshBlock)(void);
 + (instancetype)refreshView;
-- (void)endRefresh:(UIScrollView *)scrollView;
-- (void)beginRefresh:(UIScrollView *)scrollView;
+- (void)endRefresh;
+- (void)beginRefresh;
 @end
