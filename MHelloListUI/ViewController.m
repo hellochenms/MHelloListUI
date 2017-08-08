@@ -12,6 +12,7 @@
 #import "KVORefreshViewController.h"
 #import "KVOLoadMoreViewController.h"
 #import "RefreshViewController.h"
+#import "KVOAutoLoadMoreViewController.h"
 
 @interface ViewController (Table)<UITableViewDataSource, UITableViewDelegate>
 - (void)initDatas;
@@ -66,6 +67,7 @@
                    @[@"EGO时代的下拉刷新", [EGORefreshViewController class]],
                    @[@"EGO风格的KVO下拉刷新", [KVORefreshViewController class]],
                    @[@"EGO风格的KVO上拉加载", [KVOLoadMoreViewController class]],
+                   @[@"滑到位置自动加载", [KVOAutoLoadMoreViewController class]],
                    ];
 }
 

@@ -13,7 +13,6 @@ static double const kAnimationDuration = .2;
 
 static NSString * const kKeyPathContentOffset = @"contentOffset";
 static NSString * const kKeyPathContentSize = @"contentSize";
-static NSString * const kKeyPathPanState = @"state";
 
 typedef NS_ENUM(NSUInteger, KVOAutoLoadMoreViewStatus) {
     KVOAutoLoadMoreViewStatusNormal = 0,
@@ -26,7 +25,6 @@ typedef NS_ENUM(NSUInteger, KVOAutoLoadMoreViewStatus) {
 @property (nonatomic) UILabel *label;
 @property (nonatomic, weak) UIScrollView *scrollView;
 @property (nonatomic) BOOL originalAlwaysBounceVertical;
-@property (nonatomic) UIPanGestureRecognizer *pan;
 @end
 
 
@@ -76,25 +74,18 @@ typedef NS_ENUM(NSUInteger, KVOAutoLoadMoreViewStatus) {
     NSKeyValueObservingOptions options = NSKeyValueObservingOptionOld|NSKeyValueObservingOptionNew;
     [self.scrollView addObserver:self forKeyPath:kKeyPathContentOffset options:options context:nil];
     [self.scrollView addObserver:self forKeyPath:kKeyPathContentSize options:options context:nil];
-    self.pan = self.scrollView.panGestureRecognizer;
-    [self.pan addObserver:self forKeyPath:kKeyPathPanState options:options context:nil];
 }
 
 - (void)removeKVO {
     [self.superview removeObserver:self forKeyPath:kKeyPathContentOffset];
     [self.superview removeObserver:self forKeyPath:kKeyPathContentSize];
-    [self.pan removeObserver:self forKeyPath:kKeyPathPanState];
-    self.pan = nil;
+
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
     if (!self.hidden) {
         if ([keyPath isEqualToString:kKeyPathContentOffset]) {
             [self scrollViewDidScroll:self.scrollView];
-        } else if ([keyPath isEqualToString:kKeyPathPanState]) {
-            if (self.scrollView.panGestureRecognizer.state == UIGestureRecognizerStateEnded) {
-                [self scrollViewDidEndDragging:self.scrollView];
-            }
         }
     }
     if ([keyPath isEqualToString:kKeyPathContentSize]) {
@@ -115,29 +106,15 @@ typedef NS_ENUM(NSUInteger, KVOAutoLoadMoreViewStatus) {
         return;
     }
     
-    if (CGRectGetHeight(self.scrollView.bounds) + scrollView.contentOffset.y - self.scrollView.contentSize.height > kHeight) {
+    if (CGRectGetHeight(self.scrollView.bounds) + scrollView.contentOffset.y - self.scrollView.contentSize.height > 0) {
         if (self.status == KVOAutoLoadMoreViewStatusNormal) {
-            self.status = KVOAutoLoadMoreViewStatusPulling;
-        }
-    } else {
-        if (self.status == KVOAutoLoadMoreViewStatusPulling) {
-            self.status = KVOAutoLoadMoreViewStatusNormal;
-        }
-    }
-}
-
-- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView {
-    if (self.status == KVOAutoLoadMoreViewStatusLoading) {
-        return;
-    }
-    
-    if (CGRectGetHeight(self.scrollView.bounds) + scrollView.contentOffset.y - self.scrollView.contentSize.height > kHeight) {
-        if (self.didTriggerLoadMoreBlock) {
-            self.status = KVOAutoLoadMoreViewStatusLoading;
-            UIEdgeInsets inset = scrollView.contentInset;
-            inset.bottom = kHeight;
-            scrollView.contentInset = inset;
-            self.didTriggerLoadMoreBlock();
+            if (self.didTriggerLoadMoreBlock) {
+                self.status = KVOAutoLoadMoreViewStatusLoading;
+                UIEdgeInsets inset = scrollView.contentInset;
+                inset.bottom = kHeight;
+                scrollView.contentInset = inset;
+                self.didTriggerLoadMoreBlock();
+            }
         }
     }
 }
