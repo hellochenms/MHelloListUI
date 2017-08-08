@@ -14,13 +14,14 @@
 		906D00111F358E89003C7775 /* KVORefreshView.m in Sources */ = {isa = PBXBuildFile; fileRef = 906D00101F358E89003C7775 /* KVORefreshView.m */; };
 		906D00151F35A09A003C7775 /* KVOLoadMoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 906D00141F35A09A003C7775 /* KVOLoadMoreViewController.m */; };
 		906D00181F35A0AC003C7775 /* KVOLoadMoreView.m in Sources */ = {isa = PBXBuildFile; fileRef = 906D00171F35A0AC003C7775 /* KVOLoadMoreView.m */; };
+		906D001C1F396DA5003C7775 /* RefreshViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 906D001B1F396DA5003C7775 /* RefreshViewController.m */; };
+		906D001F1F396DC7003C7775 /* RefreshView.m in Sources */ = {isa = PBXBuildFile; fileRef = 906D001E1F396DC7003C7775 /* RefreshView.m */; };
 		906DFFE71F355D9A003C7775 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 906DFFE61F355D9A003C7775 /* main.m */; };
 		906DFFEA1F355D9A003C7775 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 906DFFE91F355D9A003C7775 /* AppDelegate.m */; };
 		906DFFED1F355D9A003C7775 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 906DFFEC1F355D9A003C7775 /* ViewController.m */; };
 		906DFFF01F355D9A003C7775 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 906DFFEE1F355D9A003C7775 /* Main.storyboard */; };
 		906DFFF21F355D9A003C7775 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 906DFFF11F355D9A003C7775 /* Assets.xcassets */; };
 		906DFFF51F355D9A003C7775 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 906DFFF31F355D9A003C7775 /* LaunchScreen.storyboard */; };
-		906DFFFF1F355E74003C7775 /* RefreshViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 906DFFFE1F355E74003C7775 /* RefreshViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,10 @@
 		906D00141F35A09A003C7775 /* KVOLoadMoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KVOLoadMoreViewController.m; sourceTree = "<group>"; };
 		906D00161F35A0AC003C7775 /* KVOLoadMoreView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KVOLoadMoreView.h; sourceTree = "<group>"; };
 		906D00171F35A0AC003C7775 /* KVOLoadMoreView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KVOLoadMoreView.m; sourceTree = "<group>"; };
+		906D001A1F396DA5003C7775 /* RefreshViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RefreshViewController.h; sourceTree = "<group>"; };
+		906D001B1F396DA5003C7775 /* RefreshViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RefreshViewController.m; sourceTree = "<group>"; };
+		906D001D1F396DC7003C7775 /* RefreshView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RefreshView.h; sourceTree = "<group>"; };
+		906D001E1F396DC7003C7775 /* RefreshView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RefreshView.m; sourceTree = "<group>"; };
 		906DFFE21F355D9A003C7775 /* MHelloListUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MHelloListUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		906DFFE61F355D9A003C7775 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		906DFFE81F355D9A003C7775 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -48,8 +53,6 @@
 		906DFFF11F355D9A003C7775 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		906DFFF41F355D9A003C7775 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		906DFFF61F355D9A003C7775 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		906DFFFD1F355E74003C7775 /* RefreshViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RefreshViewController.h; sourceTree = "<group>"; };
-		906DFFFE1F355E74003C7775 /* RefreshViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RefreshViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +112,18 @@
 			path = Sources/KVOLoadMore;
 			sourceTree = "<group>";
 		};
+		906D00191F396DA5003C7775 /* Refresh */ = {
+			isa = PBXGroup;
+			children = (
+				906D001A1F396DA5003C7775 /* RefreshViewController.h */,
+				906D001B1F396DA5003C7775 /* RefreshViewController.m */,
+				906D001D1F396DC7003C7775 /* RefreshView.h */,
+				906D001E1F396DC7003C7775 /* RefreshView.m */,
+			);
+			name = Refresh;
+			path = Sources/Refresh;
+			sourceTree = "<group>";
+		};
 		906DFFD91F355D9A003C7775 = {
 			isa = PBXGroup;
 			children = (
@@ -134,10 +149,10 @@
 				906DFFEC1F355D9A003C7775 /* ViewController.m */,
 				906DFFEE1F355D9A003C7775 /* Main.storyboard */,
 				906D00071F35770B003C7775 /* M2 */,
+				906D00191F396DA5003C7775 /* Refresh */,
 				906D00001F356719003C7775 /* EGORefresh */,
 				906D000B1F358E65003C7775 /* KVORefresh */,
 				906D00121F35A08B003C7775 /* KVOLoadMore */,
-				906DFFFC1F355E64003C7775 /* Refresh */,
 				906DFFF11F355D9A003C7775 /* Assets.xcassets */,
 				906DFFF31F355D9A003C7775 /* LaunchScreen.storyboard */,
 				906DFFF61F355D9A003C7775 /* Info.plist */,
@@ -152,16 +167,6 @@
 				906DFFE61F355D9A003C7775 /* main.m */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		906DFFFC1F355E64003C7775 /* Refresh */ = {
-			isa = PBXGroup;
-			children = (
-				906DFFFD1F355E74003C7775 /* RefreshViewController.h */,
-				906DFFFE1F355E74003C7775 /* RefreshViewController.m */,
-			);
-			name = Refresh;
-			path = Sources/Refresh;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -235,17 +240,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				906DFFFF1F355E74003C7775 /* RefreshViewController.m in Sources */,
 				906DFFED1F355D9A003C7775 /* ViewController.m in Sources */,
 				906D00151F35A09A003C7775 /* KVOLoadMoreViewController.m in Sources */,
 				906D00061F3568D6003C7775 /* EGORefreshView.m in Sources */,
 				906D000E1F358E79003C7775 /* KVORefreshViewController.m in Sources */,
 				906D00111F358E89003C7775 /* KVORefreshView.m in Sources */,
 				906DFFEA1F355D9A003C7775 /* AppDelegate.m in Sources */,
+				906D001F1F396DC7003C7775 /* RefreshView.m in Sources */,
 				906D000A1F357711003C7775 /* M7TempDataGenerator.m in Sources */,
 				906D00181F35A0AC003C7775 /* KVOLoadMoreView.m in Sources */,
 				906DFFE71F355D9A003C7775 /* main.m in Sources */,
 				906D00031F356728003C7775 /* EGORefreshViewController.m in Sources */,
+				906D001C1F396DA5003C7775 /* RefreshViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
