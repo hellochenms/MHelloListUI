@@ -22,6 +22,8 @@
 		906DFFF01F355D9A003C7775 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 906DFFEE1F355D9A003C7775 /* Main.storyboard */; };
 		906DFFF21F355D9A003C7775 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 906DFFF11F355D9A003C7775 /* Assets.xcassets */; };
 		906DFFF51F355D9A003C7775 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 906DFFF31F355D9A003C7775 /* LaunchScreen.storyboard */; };
+		90D2AA581F397292005CB22B /* KVOAutoLoadMoreView.m in Sources */ = {isa = PBXBuildFile; fileRef = 90D2AA571F397292005CB22B /* KVOAutoLoadMoreView.m */; };
+		90D2AA5B1F397356005CB22B /* KVOAutoLoadMoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90D2AA5A1F397356005CB22B /* KVOAutoLoadMoreViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,6 +55,10 @@
 		906DFFF11F355D9A003C7775 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		906DFFF41F355D9A003C7775 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		906DFFF61F355D9A003C7775 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		90D2AA561F397292005CB22B /* KVOAutoLoadMoreView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KVOAutoLoadMoreView.h; sourceTree = "<group>"; };
+		90D2AA571F397292005CB22B /* KVOAutoLoadMoreView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KVOAutoLoadMoreView.m; sourceTree = "<group>"; };
+		90D2AA591F397356005CB22B /* KVOAutoLoadMoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KVOAutoLoadMoreViewController.h; sourceTree = "<group>"; };
+		90D2AA5A1F397356005CB22B /* KVOAutoLoadMoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KVOAutoLoadMoreViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,6 +159,7 @@
 				906D00001F356719003C7775 /* EGORefresh */,
 				906D000B1F358E65003C7775 /* KVORefresh */,
 				906D00121F35A08B003C7775 /* KVOLoadMore */,
+				90D2AA521F39724E005CB22B /* KVOAutoLoadMore */,
 				906DFFF11F355D9A003C7775 /* Assets.xcassets */,
 				906DFFF31F355D9A003C7775 /* LaunchScreen.storyboard */,
 				906DFFF61F355D9A003C7775 /* Info.plist */,
@@ -167,6 +174,18 @@
 				906DFFE61F355D9A003C7775 /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		90D2AA521F39724E005CB22B /* KVOAutoLoadMore */ = {
+			isa = PBXGroup;
+			children = (
+				90D2AA591F397356005CB22B /* KVOAutoLoadMoreViewController.h */,
+				90D2AA5A1F397356005CB22B /* KVOAutoLoadMoreViewController.m */,
+				90D2AA561F397292005CB22B /* KVOAutoLoadMoreView.h */,
+				90D2AA571F397292005CB22B /* KVOAutoLoadMoreView.m */,
+			);
+			name = KVOAutoLoadMore;
+			path = Sources/KVOAutoLoadMore;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -243,6 +262,7 @@
 				906DFFED1F355D9A003C7775 /* ViewController.m in Sources */,
 				906D00151F35A09A003C7775 /* KVOLoadMoreViewController.m in Sources */,
 				906D00061F3568D6003C7775 /* EGORefreshView.m in Sources */,
+				90D2AA581F397292005CB22B /* KVOAutoLoadMoreView.m in Sources */,
 				906D000E1F358E79003C7775 /* KVORefreshViewController.m in Sources */,
 				906D00111F358E89003C7775 /* KVORefreshView.m in Sources */,
 				906DFFEA1F355D9A003C7775 /* AppDelegate.m in Sources */,
@@ -252,6 +272,7 @@
 				906DFFE71F355D9A003C7775 /* main.m in Sources */,
 				906D00031F356728003C7775 /* EGORefreshViewController.m in Sources */,
 				906D001C1F396DA5003C7775 /* RefreshViewController.m in Sources */,
+				90D2AA5B1F397356005CB22B /* KVOAutoLoadMoreViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
