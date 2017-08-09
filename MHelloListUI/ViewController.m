@@ -13,6 +13,7 @@
 #import "KVOLoadMoreViewController.h"
 #import "RefreshViewController.h"
 #import "KVOAutoLoadMoreViewController.h"
+#import "TestTableViewController.h"
 
 @interface ViewController (Table)<UITableViewDataSource, UITableViewDelegate>
 - (void)initDatas;
@@ -63,7 +64,8 @@
 @implementation ViewController (Table)
 #pragma mark - Init
 - (void)initDatas {
-    self.datas = @[@[@"只负责触发的下拉刷新", [RefreshViewController class]],
+    self.datas = @[@[@"测试TableView", [TestTableViewController class]],
+                   @[@"只负责触发的下拉刷新", [RefreshViewController class]],
                    @[@"EGO时代的下拉刷新", [EGORefreshViewController class]],
                    @[@"EGO风格的KVO下拉刷新", [KVORefreshViewController class]],
                    @[@"EGO风格的KVO上拉加载", [KVOLoadMoreViewController class]],
