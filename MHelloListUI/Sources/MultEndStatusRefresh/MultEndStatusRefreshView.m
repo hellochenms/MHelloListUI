@@ -1,12 +1,12 @@
 //
-//  KVORefreshView.m
+//  MultEndStatusRefreshView.m
 //  MHelloListUI
 //
-//  Created by chenms on 17/8/5.
+//  Created by Chen,Meisong on 2017/8/10.
 //  Copyright © 2017年 chenms.m2. All rights reserved.
 //
 
-#import "KVORefreshView.h"
+#import "MultEndStatusRefreshView.h"
 
 static double const kHeight = 60;
 static double const kAnimationDuration = .2;
@@ -14,21 +14,25 @@ static double const kAnimationDuration = .2;
 static NSString * const kKeyPathContentOffset = @"contentOffset";
 static NSString * const kKeyPathPanState = @"state";
 
-typedef NS_ENUM(NSUInteger, KVORefreshViewStatus) {
-    KVORefreshViewStatusNormal = 0,
-    KVORefreshViewStatusPulling,
-    KVORefreshViewStatusLoading,
+typedef NS_ENUM(NSUInteger, MultEndStatusRefreshViewStatus) {
+    MultEndStatusRefreshViewStatusNormal = 0,
+    MultEndStatusRefreshViewStatusPulling,
+    MultEndStatusRefreshViewStatusLoading,
+    MultEndStatusRefreshViewStatusShowLabel,
+    MultEndStatusRefreshViewStatusShowButton,
 };
 
-@interface KVORefreshView ()
-@property (nonatomic) KVORefreshViewStatus status;
+@interface MultEndStatusRefreshView ()
+@property (nonatomic) MultEndStatusRefreshViewStatus status;
 @property (nonatomic) UILabel *label;
+@property (nonatomic) UIButton *button;
 @property (nonatomic, weak) UIScrollView *scrollView;
 @property (nonatomic) BOOL originalAlwaysBounceVertical;
 @property (nonatomic) UIPanGestureRecognizer *pan; // 无法确定系统释放时机，可能导致KVO问题，故用strong变量维护
+@property (nonatomic, copy) NSString *text;
 @end
 
-@implementation KVORefreshView
+@implementation MultEndStatusRefreshView
 
 + (instancetype)refreshView {
     return [self new];
@@ -38,13 +42,21 @@ typedef NS_ENUM(NSUInteger, KVORefreshViewStatus) {
     self = [super initWithFrame:CGRectMake(0, -kHeight, CGRectGetWidth([UIScreen mainScreen].bounds), kHeight)];
     if (self) {
         self.backgroundColor = [UIColor brownColor];
-        self.status = KVORefreshViewStatusNormal;
+        self.status = MultEndStatusRefreshViewStatusNormal;
         
         [self addSubview:self.label];
-        self.label.frame = self.bounds;
+        self.button.hidden = YES;
+        [self addSubview:self.button];
     }
     
     return self;
+}
+
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    
+    self.label.frame = self.bounds;
+    self.button.frame = self.bounds;
 }
 
 #pragma mark - Life Cycle
@@ -53,7 +65,7 @@ typedef NS_ENUM(NSUInteger, KVORefreshViewStatus) {
     if (newSuperview && ![newSuperview isKindOfClass:[UIScrollView class]]) {
         return;
     }
-
+    
     self.scrollView.alwaysBounceVertical = self.originalAlwaysBounceVertical;
     [self removeKVO];
     
@@ -92,7 +104,9 @@ typedef NS_ENUM(NSUInteger, KVORefreshViewStatus) {
 
 #pragma mark - ScrollView
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    if (self.status == KVORefreshViewStatusLoading) {
+    if (self.status == MultEndStatusRefreshViewStatusLoading
+        || self.status == MultEndStatusRefreshViewStatusShowLabel
+        || self.status == MultEndStatusRefreshViewStatusShowButton) {
         UIEdgeInsets inset = scrollView.contentInset;
         inset.top = fmin(fmax(scrollView.contentOffset.y * -1, 0), kHeight);
         scrollView.contentInset = inset;
@@ -104,24 +118,26 @@ typedef NS_ENUM(NSUInteger, KVORefreshViewStatus) {
     }
     
     if (scrollView.contentOffset.y < -kHeight) {
-        if (self.status == KVORefreshViewStatusNormal) {
-            self.status = KVORefreshViewStatusPulling;
+        if (self.status == MultEndStatusRefreshViewStatusNormal) {
+            self.status = MultEndStatusRefreshViewStatusPulling;
         }
     } else {
-        if (self.status == KVORefreshViewStatusPulling) {
-            self.status = KVORefreshViewStatusNormal;
+        if (self.status == MultEndStatusRefreshViewStatusPulling) {
+            self.status = MultEndStatusRefreshViewStatusNormal;
         }
     }
 }
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView {
-    if (self.status == KVORefreshViewStatusLoading) {
+    if (self.status == MultEndStatusRefreshViewStatusLoading
+        || self.status == MultEndStatusRefreshViewStatusShowLabel
+        || self.status == MultEndStatusRefreshViewStatusShowButton) {
         return;
     }
     
     if (scrollView.contentOffset.y < -kHeight) {
         if (self.didTriggerRefreshBlock) {
-            self.status = KVORefreshViewStatusLoading;
+            self.status = MultEndStatusRefreshViewStatusLoading;
             UIEdgeInsets inset = scrollView.contentInset;
             inset.top = kHeight;
             scrollView.contentInset = inset;
@@ -132,7 +148,7 @@ typedef NS_ENUM(NSUInteger, KVORefreshViewStatus) {
 
 #pragma mark - Public
 - (void)endRefresh{
-    self.status = KVORefreshViewStatusNormal;
+    self.status = MultEndStatusRefreshViewStatusNormal;
     
     [UIView animateWithDuration:kAnimationDuration animations:^{
         UIEdgeInsets inset = self.scrollView.contentInset;
@@ -141,15 +157,42 @@ typedef NS_ENUM(NSUInteger, KVORefreshViewStatus) {
     }];
 }
 
+- (void)endRefreshWithLabel:(NSString *)text {
+    self.text = text;
+    self.status = MultEndStatusRefreshViewStatusShowLabel;
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        self.status = MultEndStatusRefreshViewStatusNormal;
+        [UIView animateWithDuration:kAnimationDuration animations:^{
+            UIEdgeInsets inset = self.scrollView.contentInset;
+            inset.top = 0;
+            self.scrollView.contentInset = inset;
+        }];
+    });
+}
+
+- (void)endRefreshWithButton {
+    self.status = MultEndStatusRefreshViewStatusShowButton;
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        self.status = MultEndStatusRefreshViewStatusNormal;
+        [UIView animateWithDuration:kAnimationDuration animations:^{
+            UIEdgeInsets inset = self.scrollView.contentInset;
+            inset.top = 0;
+            self.scrollView.contentInset = inset;
+        }];
+    });
+}
+
 - (void)beginRefresh {
-    if (self.status == KVORefreshViewStatusLoading) {
+    if (self.status == MultEndStatusRefreshViewStatusLoading) {
         return;
     }
     
     [UIView animateWithDuration:kAnimationDuration animations:^{
         self.scrollView.contentOffset = CGPointMake(0, -kHeight);
         
-        self.status = KVORefreshViewStatusLoading;
+        self.status = MultEndStatusRefreshViewStatusLoading;
         UIEdgeInsets inset = self.scrollView.contentInset;
         inset.top = kHeight;
         self.scrollView.contentInset = inset;
@@ -157,23 +200,46 @@ typedef NS_ENUM(NSUInteger, KVORefreshViewStatus) {
 }
 
 #pragma mark - Status
-- (void)setStatus:(KVORefreshViewStatus)status {
+- (void)setStatus:(MultEndStatusRefreshViewStatus)status {
     _status = status;
     
     switch (status) {
-        case KVORefreshViewStatusNormal:
+        case MultEndStatusRefreshViewStatusNormal:
+            self.label.hidden = NO;
+            self.button.hidden = YES;
             self.label.text = @"下拉即可刷新";
             break;
-        case KVORefreshViewStatusPulling:
+        case MultEndStatusRefreshViewStatusPulling:
+            self.label.hidden = NO;
+            self.button.hidden = YES;
             self.label.text = @"松开即可刷新";
             break;
-        case KVORefreshViewStatusLoading:
+        case MultEndStatusRefreshViewStatusLoading:
+            self.label.hidden = NO;
+            self.button.hidden = YES;
             self.label.text = @"刷新中";
+            break;
+        case MultEndStatusRefreshViewStatusShowLabel:
+            self.label.hidden = NO;
+            self.button.hidden = YES;
+            self.label.text = self.text;
+            break;
+        case MultEndStatusRefreshViewStatusShowButton:
+            self.label.hidden = YES;
+            self.button.hidden = NO;
             break;
         default:
             break;
     }
 }
+
+#pragma mark - Event
+- (void)onTapNoMoreButton {
+    if (self.onTapButtonBlock) {
+        self.onTapButtonBlock();
+    }
+}
+
 
 #pragma mark - Getter
 - (UILabel *)label {
@@ -184,6 +250,16 @@ typedef NS_ENUM(NSUInteger, KVORefreshViewStatus) {
     }
     
     return _label;
+}
+
+- (UIButton *)button {
+    if(!_button){
+        _button = [UIButton buttonWithType:UIButtonTypeSystem];
+        [_button setTitle:@"点击触发xxx操作" forState:UIControlStateNormal];
+        [_button addTarget:self action:@selector(onTapNoMoreButton) forControlEvents:UIControlEventTouchUpInside];
+    }
+    
+    return _button;
 }
 
 @end

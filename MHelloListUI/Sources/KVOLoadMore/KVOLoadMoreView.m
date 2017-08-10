@@ -87,22 +87,23 @@ typedef NS_ENUM(NSUInteger, KVOLoadMoreViewStatus) {
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
-    if (!self.hidden) {
-        if ([keyPath isEqualToString:kKeyPathContentOffset]) {
-            [self scrollViewDidScroll:self.scrollView];
-        } else if ([keyPath isEqualToString:kKeyPathPanState]) {
-            if (self.scrollView.panGestureRecognizer.state == UIGestureRecognizerStateEnded) {
-                [self scrollViewDidEndDragging:self.scrollView];
-            }
+    if ([keyPath isEqualToString:kKeyPathContentOffset]) {
+        [self scrollViewDidScroll:self.scrollView];
+    } else if ([keyPath isEqualToString:kKeyPathPanState]) {
+        if (self.scrollView.panGestureRecognizer.state == UIGestureRecognizerStateEnded) {
+            [self scrollViewDidEndDragging:self.scrollView];
         }
-    }
-    if ([keyPath isEqualToString:kKeyPathContentSize]) {
+    } else if ([keyPath isEqualToString:kKeyPathContentSize]) {
         [self scrollViewDidChangeContentSize:self.scrollView];
     }
 }
 
 #pragma mark - ScrollView
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    if (self.hidden) {
+        return;
+    }
+    
     if (self.status == KVOLoadMoreViewStatusLoading) {
         UIEdgeInsets inset = scrollView.contentInset;
         inset.bottom = fmin(fmax(CGRectGetHeight(self.scrollView.bounds) + scrollView.contentOffset.y - self.scrollView.contentSize.height, 0), kHeight);
@@ -126,6 +127,10 @@ typedef NS_ENUM(NSUInteger, KVOLoadMoreViewStatus) {
 }
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView {
+    if (self.hidden) {
+        return;
+    }
+    
     if (self.status == KVOLoadMoreViewStatusLoading) {
         return;
     }

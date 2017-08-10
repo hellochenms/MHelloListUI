@@ -26,6 +26,10 @@
 		90D2AA5B1F397356005CB22B /* KVOAutoLoadMoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90D2AA5A1F397356005CB22B /* KVOAutoLoadMoreViewController.m */; };
 		99B067CF1F3B56960023C47E /* TestTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99B067CE1F3B56960023C47E /* TestTableViewController.m */; };
 		99B067D21F3B56B10023C47E /* ExtraView.m in Sources */ = {isa = PBXBuildFile; fileRef = 99B067D11F3B56B10023C47E /* ExtraView.m */; };
+		99B067DC1F3C62910023C47E /* MultEndStatusLoadMoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99B067DB1F3C62910023C47E /* MultEndStatusLoadMoreViewController.m */; };
+		99B067DF1F3C62AF0023C47E /* MultEndStatusLoadMoreView.m in Sources */ = {isa = PBXBuildFile; fileRef = 99B067DE1F3C62AF0023C47E /* MultEndStatusLoadMoreView.m */; };
+		99B067E31F3C8A7F0023C47E /* MultEndStatusRefreshView.m in Sources */ = {isa = PBXBuildFile; fileRef = 99B067E21F3C8A7F0023C47E /* MultEndStatusRefreshView.m */; };
+		99B067E61F3C8A8A0023C47E /* MultEndStatusRefreshViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99B067E51F3C8A8A0023C47E /* MultEndStatusRefreshViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -65,6 +69,14 @@
 		99B067CE1F3B56960023C47E /* TestTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestTableViewController.m; sourceTree = "<group>"; };
 		99B067D01F3B56B10023C47E /* ExtraView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExtraView.h; sourceTree = "<group>"; };
 		99B067D11F3B56B10023C47E /* ExtraView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExtraView.m; sourceTree = "<group>"; };
+		99B067DA1F3C62910023C47E /* MultEndStatusLoadMoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultEndStatusLoadMoreViewController.h; sourceTree = "<group>"; };
+		99B067DB1F3C62910023C47E /* MultEndStatusLoadMoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultEndStatusLoadMoreViewController.m; sourceTree = "<group>"; };
+		99B067DD1F3C62AF0023C47E /* MultEndStatusLoadMoreView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultEndStatusLoadMoreView.h; sourceTree = "<group>"; };
+		99B067DE1F3C62AF0023C47E /* MultEndStatusLoadMoreView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultEndStatusLoadMoreView.m; sourceTree = "<group>"; };
+		99B067E11F3C8A7F0023C47E /* MultEndStatusRefreshView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultEndStatusRefreshView.h; sourceTree = "<group>"; };
+		99B067E21F3C8A7F0023C47E /* MultEndStatusRefreshView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultEndStatusRefreshView.m; sourceTree = "<group>"; };
+		99B067E41F3C8A8A0023C47E /* MultEndStatusRefreshViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultEndStatusRefreshViewController.h; sourceTree = "<group>"; };
+		99B067E51F3C8A8A0023C47E /* MultEndStatusRefreshViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultEndStatusRefreshViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -167,6 +179,8 @@
 				906D000B1F358E65003C7775 /* KVORefresh */,
 				906D00121F35A08B003C7775 /* KVOLoadMore */,
 				90D2AA521F39724E005CB22B /* KVOAutoLoadMore */,
+				99B067D91F3C62800023C47E /* MultEndStatusLoadMore */,
+				99B067E01F3C8A700023C47E /* MultEndStatusRefresh */,
 				906DFFF11F355D9A003C7775 /* Assets.xcassets */,
 				906DFFF31F355D9A003C7775 /* LaunchScreen.storyboard */,
 				906DFFF61F355D9A003C7775 /* Info.plist */,
@@ -205,6 +219,30 @@
 			);
 			name = TestTableView;
 			path = Sources/TestTableView;
+			sourceTree = "<group>";
+		};
+		99B067D91F3C62800023C47E /* MultEndStatusLoadMore */ = {
+			isa = PBXGroup;
+			children = (
+				99B067DA1F3C62910023C47E /* MultEndStatusLoadMoreViewController.h */,
+				99B067DB1F3C62910023C47E /* MultEndStatusLoadMoreViewController.m */,
+				99B067DD1F3C62AF0023C47E /* MultEndStatusLoadMoreView.h */,
+				99B067DE1F3C62AF0023C47E /* MultEndStatusLoadMoreView.m */,
+			);
+			name = MultEndStatusLoadMore;
+			path = Sources/MultEndStatusLoadMore;
+			sourceTree = "<group>";
+		};
+		99B067E01F3C8A700023C47E /* MultEndStatusRefresh */ = {
+			isa = PBXGroup;
+			children = (
+				99B067E41F3C8A8A0023C47E /* MultEndStatusRefreshViewController.h */,
+				99B067E51F3C8A8A0023C47E /* MultEndStatusRefreshViewController.m */,
+				99B067E11F3C8A7F0023C47E /* MultEndStatusRefreshView.h */,
+				99B067E21F3C8A7F0023C47E /* MultEndStatusRefreshView.m */,
+			);
+			name = MultEndStatusRefresh;
+			path = Sources/MultEndStatusRefresh;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -286,9 +324,13 @@
 				99B067D21F3B56B10023C47E /* ExtraView.m in Sources */,
 				906D00111F358E89003C7775 /* KVORefreshView.m in Sources */,
 				906DFFEA1F355D9A003C7775 /* AppDelegate.m in Sources */,
+				99B067DC1F3C62910023C47E /* MultEndStatusLoadMoreViewController.m in Sources */,
 				906D001F1F396DC7003C7775 /* RefreshView.m in Sources */,
+				99B067E31F3C8A7F0023C47E /* MultEndStatusRefreshView.m in Sources */,
 				906D000A1F357711003C7775 /* M7TempDataGenerator.m in Sources */,
+				99B067DF1F3C62AF0023C47E /* MultEndStatusLoadMoreView.m in Sources */,
 				906D00181F35A0AC003C7775 /* KVOLoadMoreView.m in Sources */,
+				99B067E61F3C8A8A0023C47E /* MultEndStatusRefreshViewController.m in Sources */,
 				906DFFE71F355D9A003C7775 /* main.m in Sources */,
 				906D00031F356728003C7775 /* EGORefreshViewController.m in Sources */,
 				99B067CF1F3B56960023C47E /* TestTableViewController.m in Sources */,

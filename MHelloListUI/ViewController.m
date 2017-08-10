@@ -14,6 +14,8 @@
 #import "RefreshViewController.h"
 #import "KVOAutoLoadMoreViewController.h"
 #import "TestTableViewController.h"
+#import "MultEndStatusLoadMoreViewController.h"
+#import "MultEndStatusRefreshViewController.h"
 
 @interface ViewController (Table)<UITableViewDataSource, UITableViewDelegate>
 - (void)initDatas;
@@ -70,6 +72,8 @@
                    @[@"EGO风格的KVO下拉刷新", [KVORefreshViewController class]],
                    @[@"EGO风格的KVO上拉加载", [KVOLoadMoreViewController class]],
                    @[@"滑到位置自动加载", [KVOAutoLoadMoreViewController class]],
+                   @[@"加载结果有多种状态", [MultEndStatusLoadMoreViewController class]],
+                   @[@"刷新有多种状态", [MultEndStatusRefreshViewController class]],
                    ];
 }
 

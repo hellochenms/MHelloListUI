@@ -1,12 +1,13 @@
+
 //
-//  KVOAutoLoadMoreView.m
+//  MultEndStatusLoadMoreView.m
 //  MHelloListUI
 //
-//  Created by chenms on 17/8/8.
+//  Created by Chen,Meisong on 2017/8/10.
 //  Copyright © 2017年 chenms.m2. All rights reserved.
 //
 
-#import "KVOAutoLoadMoreView.h"
+#import "MultEndStatusLoadMoreView.h"
 
 static double const kHeight = 60;
 static double const kAnimationDuration = .2;
@@ -14,20 +15,23 @@ static double const kAnimationDuration = .2;
 static NSString * const kKeyPathContentOffset = @"contentOffset";
 static NSString * const kKeyPathContentSize = @"contentSize";
 
-typedef NS_ENUM(NSUInteger, KVOAutoLoadMoreViewStatus) {
-    KVOAutoLoadMoreViewStatusNormal = 0,
-    KVOAutoLoadMoreViewStatusLoading,
+typedef NS_ENUM(NSUInteger, MultEndStatusLoadMoreViewStatus) {
+    MultEndStatusLoadMoreViewStatusNormal = 0,
+    MultEndStatusLoadMoreViewStatusLoading,
+    MultEndStatusLoadMoreViewStatusNoMore,
+    MultEndStatusLoadMoreViewStatusNoMoreCanTap,
 };
 
-@interface KVOAutoLoadMoreView ()
-@property (nonatomic) KVOAutoLoadMoreViewStatus status;
+@interface MultEndStatusLoadMoreView ()
+@property (nonatomic) MultEndStatusLoadMoreViewStatus status;
 @property (nonatomic) UILabel *label;
+@property (nonatomic) UIButton *button;
 @property (nonatomic, weak) UIScrollView *scrollView;
 @property (nonatomic) BOOL originalAlwaysBounceVertical;
 @end
 
 
-@implementation KVOAutoLoadMoreView
+@implementation MultEndStatusLoadMoreView
 
 + (instancetype)loadMoreView {
     return [self new];
@@ -37,13 +41,22 @@ typedef NS_ENUM(NSUInteger, KVOAutoLoadMoreViewStatus) {
     self = [super initWithFrame:CGRectMake(0, 0, CGRectGetWidth([UIScreen mainScreen].bounds), kHeight)];
     if (self) {
         self.backgroundColor = [UIColor brownColor];
-        self.status = KVOAutoLoadMoreViewStatusNormal;
+        self.status = MultEndStatusLoadMoreViewStatusNormal;
         
         [self addSubview:self.label];
-        self.label.frame = self.bounds;
+        self.button.hidden = YES;
+        [self addSubview:self.button];
+        
     }
     
     return self;
+}
+
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    
+    self.label.frame = self.bounds;
+    self.button.frame = self.bounds;
 }
 
 #pragma mark - Life Cycle
@@ -93,21 +106,17 @@ typedef NS_ENUM(NSUInteger, KVOAutoLoadMoreViewStatus) {
     if (self.hidden) {
         return;
     }
-    if (self.status == KVOAutoLoadMoreViewStatusLoading) {
-        UIEdgeInsets inset = scrollView.contentInset;
-        inset.bottom = fmin(fmax(CGRectGetHeight(self.scrollView.bounds) + scrollView.contentOffset.y - self.scrollView.contentSize.height, 0), kHeight);
-        scrollView.contentInset = inset;
+    if (self.status == MultEndStatusLoadMoreViewStatusLoading) {
         return;
     }
-    
     if (!scrollView.isDragging) {
         return;
     }
     
     if (CGRectGetHeight(self.scrollView.bounds) + scrollView.contentOffset.y - self.scrollView.contentSize.height > 0) {
-        if (self.status == KVOAutoLoadMoreViewStatusNormal) {
+        if (self.status == MultEndStatusLoadMoreViewStatusNormal) {
             if (self.didTriggerLoadMoreBlock) {
-                self.status = KVOAutoLoadMoreViewStatusLoading;
+                self.status = MultEndStatusLoadMoreViewStatusLoading;
                 UIEdgeInsets inset = scrollView.contentInset;
                 inset.bottom = kHeight;
                 scrollView.contentInset = inset;
@@ -131,29 +140,62 @@ typedef NS_ENUM(NSUInteger, KVOAutoLoadMoreViewStatus) {
 
 #pragma mark - Public
 - (void)endLoadMore {
-    self.status = KVOAutoLoadMoreViewStatusNormal;
-    
+    self.status = MultEndStatusLoadMoreViewStatusNormal;
+    UIEdgeInsets inset = self.scrollView.contentInset;
+    inset.bottom = 0;
     [UIView animateWithDuration:kAnimationDuration animations:^{
-        UIEdgeInsets inset = self.scrollView.contentInset;
-        inset.bottom = 0;
         self.scrollView.contentInset = inset;
     }];
 }
 
+- (void)endLoadMoreWithNoMoreLabel {
+    self.status = MultEndStatusLoadMoreViewStatusNoMore;
+}
+
+- (void)endLoadMoreWithNoMoreButton {
+    self.status = MultEndStatusLoadMoreViewStatusNoMoreCanTap;
+}
+
+- (void)reset {
+    self.status = MultEndStatusLoadMoreViewStatusNormal;
+    UIEdgeInsets inset = self.scrollView.contentInset;
+    inset.bottom = 0;
+    self.scrollView.contentInset = inset;
+}
 
 #pragma mark - Status
-- (void)setStatus:(KVOAutoLoadMoreViewStatus)status {
+- (void)setStatus:(MultEndStatusLoadMoreViewStatus)status {
     _status = status;
     
     switch (status) {
-        case KVOAutoLoadMoreViewStatusNormal:
+        case MultEndStatusLoadMoreViewStatusNormal:
             self.label.text = @"上拉即可加载";
+            self.label.hidden = NO;
+            self.button.hidden = YES;
             break;
-        case KVOAutoLoadMoreViewStatusLoading:
+        case MultEndStatusLoadMoreViewStatusLoading:
             self.label.text = @"加载中";
+            self.label.hidden = NO;
+            self.button.hidden = YES;
+            break;
+        case MultEndStatusLoadMoreViewStatusNoMore:
+            self.label.text = @"没有更多了";
+            self.label.hidden = NO;
+            self.button.hidden = YES;
+            break;
+        case MultEndStatusLoadMoreViewStatusNoMoreCanTap:
+            self.label.hidden = YES;
+            self.button.hidden = NO;
             break;
         default:
             break;
+    }
+}
+
+#pragma mark - Event
+- (void)onTapNoMoreButton {
+    if (self.onTapNoMoreButtonBlock) {
+        self.onTapNoMoreButtonBlock();
     }
 }
 
@@ -166,6 +208,16 @@ typedef NS_ENUM(NSUInteger, KVOAutoLoadMoreViewStatus) {
     }
     
     return _label;
+}
+
+- (UIButton *)button {
+    if(!_button){
+        _button = [UIButton buttonWithType:UIButtonTypeSystem];
+        [_button setTitle:@"点击触发xxx操作" forState:UIControlStateNormal];
+        [_button addTarget:self action:@selector(onTapNoMoreButton) forControlEvents:UIControlEventTouchUpInside];
+    }
+    
+    return _button;
 }
 
 @end
