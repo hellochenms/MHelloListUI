@@ -30,6 +30,10 @@
 		99B067DF1F3C62AF0023C47E /* MultEndStatusLoadMoreView.m in Sources */ = {isa = PBXBuildFile; fileRef = 99B067DE1F3C62AF0023C47E /* MultEndStatusLoadMoreView.m */; };
 		99B067E31F3C8A7F0023C47E /* MultEndStatusRefreshView.m in Sources */ = {isa = PBXBuildFile; fileRef = 99B067E21F3C8A7F0023C47E /* MultEndStatusRefreshView.m */; };
 		99B067E61F3C8A8A0023C47E /* MultEndStatusRefreshViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99B067E51F3C8A8A0023C47E /* MultEndStatusRefreshViewController.m */; };
+		99B067EA1F3D51170023C47E /* M2ScrollViewObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = 99B067E91F3D51170023C47E /* M2ScrollViewObserver.m */; };
+		99B067ED1F3D55060023C47E /* ObserverRefreshView.m in Sources */ = {isa = PBXBuildFile; fileRef = 99B067EC1F3D55060023C47E /* ObserverRefreshView.m */; };
+		99B067F31F3D553D0023C47E /* ScrollObserverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99B067F21F3D553D0023C47E /* ScrollObserverViewController.m */; };
+		99B067F71F3D60E30023C47E /* ObserverRefreshContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 99B067F61F3D60E30023C47E /* ObserverRefreshContentView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -77,6 +81,15 @@
 		99B067E21F3C8A7F0023C47E /* MultEndStatusRefreshView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultEndStatusRefreshView.m; sourceTree = "<group>"; };
 		99B067E41F3C8A8A0023C47E /* MultEndStatusRefreshViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultEndStatusRefreshViewController.h; sourceTree = "<group>"; };
 		99B067E51F3C8A8A0023C47E /* MultEndStatusRefreshViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultEndStatusRefreshViewController.m; sourceTree = "<group>"; };
+		99B067E81F3D51170023C47E /* M2ScrollViewObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M2ScrollViewObserver.h; sourceTree = "<group>"; };
+		99B067E91F3D51170023C47E /* M2ScrollViewObserver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M2ScrollViewObserver.m; sourceTree = "<group>"; };
+		99B067EB1F3D55060023C47E /* ObserverRefreshView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObserverRefreshView.h; sourceTree = "<group>"; };
+		99B067EC1F3D55060023C47E /* ObserverRefreshView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObserverRefreshView.m; sourceTree = "<group>"; };
+		99B067F11F3D553D0023C47E /* ScrollObserverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrollObserverViewController.h; sourceTree = "<group>"; };
+		99B067F21F3D553D0023C47E /* ScrollObserverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrollObserverViewController.m; sourceTree = "<group>"; };
+		99B067F51F3D60E30023C47E /* ObserverRefreshContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObserverRefreshContentView.h; sourceTree = "<group>"; };
+		99B067F61F3D60E30023C47E /* ObserverRefreshContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObserverRefreshContentView.m; sourceTree = "<group>"; };
+		99B067F81F3D61450023C47E /* ObserverRefreshContentViewProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ObserverRefreshContentViewProtocol.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +120,8 @@
 			children = (
 				906D00081F357711003C7775 /* M7TempDataGenerator.h */,
 				906D00091F357711003C7775 /* M7TempDataGenerator.m */,
+				99B067E81F3D51170023C47E /* M2ScrollViewObserver.h */,
+				99B067E91F3D51170023C47E /* M2ScrollViewObserver.m */,
 			);
 			name = M2;
 			path = Sources/M2;
@@ -181,6 +196,7 @@
 				90D2AA521F39724E005CB22B /* KVOAutoLoadMore */,
 				99B067D91F3C62800023C47E /* MultEndStatusLoadMore */,
 				99B067E01F3C8A700023C47E /* MultEndStatusRefresh */,
+				99B067E71F3D505E0023C47E /* ScrollObserver */,
 				906DFFF11F355D9A003C7775 /* Assets.xcassets */,
 				906DFFF31F355D9A003C7775 /* LaunchScreen.storyboard */,
 				906DFFF61F355D9A003C7775 /* Info.plist */,
@@ -243,6 +259,21 @@
 			);
 			name = MultEndStatusRefresh;
 			path = Sources/MultEndStatusRefresh;
+			sourceTree = "<group>";
+		};
+		99B067E71F3D505E0023C47E /* ScrollObserver */ = {
+			isa = PBXGroup;
+			children = (
+				99B067F11F3D553D0023C47E /* ScrollObserverViewController.h */,
+				99B067F21F3D553D0023C47E /* ScrollObserverViewController.m */,
+				99B067EB1F3D55060023C47E /* ObserverRefreshView.h */,
+				99B067EC1F3D55060023C47E /* ObserverRefreshView.m */,
+				99B067F81F3D61450023C47E /* ObserverRefreshContentViewProtocol.h */,
+				99B067F51F3D60E30023C47E /* ObserverRefreshContentView.h */,
+				99B067F61F3D60E30023C47E /* ObserverRefreshContentView.m */,
+			);
+			name = ScrollObserver;
+			path = Sources/ScrollObserver;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -329,13 +360,17 @@
 				99B067E31F3C8A7F0023C47E /* MultEndStatusRefreshView.m in Sources */,
 				906D000A1F357711003C7775 /* M7TempDataGenerator.m in Sources */,
 				99B067DF1F3C62AF0023C47E /* MultEndStatusLoadMoreView.m in Sources */,
+				99B067EA1F3D51170023C47E /* M2ScrollViewObserver.m in Sources */,
 				906D00181F35A0AC003C7775 /* KVOLoadMoreView.m in Sources */,
 				99B067E61F3C8A8A0023C47E /* MultEndStatusRefreshViewController.m in Sources */,
 				906DFFE71F355D9A003C7775 /* main.m in Sources */,
 				906D00031F356728003C7775 /* EGORefreshViewController.m in Sources */,
 				99B067CF1F3B56960023C47E /* TestTableViewController.m in Sources */,
 				906D001C1F396DA5003C7775 /* RefreshViewController.m in Sources */,
+				99B067ED1F3D55060023C47E /* ObserverRefreshView.m in Sources */,
 				90D2AA5B1F397356005CB22B /* KVOAutoLoadMoreViewController.m in Sources */,
+				99B067F31F3D553D0023C47E /* ScrollObserverViewController.m in Sources */,
+				99B067F71F3D60E30023C47E /* ObserverRefreshContentView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

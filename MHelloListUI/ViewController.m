@@ -16,6 +16,7 @@
 #import "TestTableViewController.h"
 #import "MultEndStatusLoadMoreViewController.h"
 #import "MultEndStatusRefreshViewController.h"
+#import "ScrollObserverViewController.h"
 
 @interface ViewController (Table)<UITableViewDataSource, UITableViewDelegate>
 - (void)initDatas;
@@ -74,6 +75,7 @@
                    @[@"滑到位置自动加载", [KVOAutoLoadMoreViewController class]],
                    @[@"加载结果有多种状态", [MultEndStatusLoadMoreViewController class]],
                    @[@"刷新有多种状态", [MultEndStatusRefreshViewController class]],
+                   @[@"提取出ScrollObserver与contentView", [ScrollObserverViewController class]],
                    ];
 }
 
