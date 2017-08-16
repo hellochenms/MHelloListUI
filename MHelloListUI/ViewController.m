@@ -21,6 +21,7 @@
 #import "RefreshLoadMoreViewController.h"
 #import "AlwaysBottomLoadMoreViewController.h"
 #import "HeaderFooterViewController.h"
+#import "UIScrollViewCategoryViewController.h"
 
 @interface ViewController (Table)<UITableViewDataSource, UITableViewDelegate>
 - (void)initDatas;
@@ -84,6 +85,7 @@
                    @[@"刷新+加载", [RefreshLoadMoreViewController class]],
                    @[@"上滑控件始终在屏幕底部", [AlwaysBottomLoadMoreViewController class]],
                    @[@"HeaderFooter方式的NoMoreData", [HeaderFooterViewController class]],
+                   @[@"UIScrollView的扩展-下拉刷新", [UIScrollViewCategoryViewController class]],
                    ];
 }
 

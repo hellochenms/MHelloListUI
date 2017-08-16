@@ -36,6 +36,8 @@
 		9961F2351F443057003D8EFC /* Footer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9961F2341F443057003D8EFC /* Footer.m */; };
 		9961F2381F443121003D8EFC /* HeaderKVORefreshView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9961F2371F443121003D8EFC /* HeaderKVORefreshView.m */; };
 		9961F23B1F443137003D8EFC /* FooterKVOAutoLoadMoreView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9961F23A1F443137003D8EFC /* FooterKVOAutoLoadMoreView.m */; };
+		9961F23F1F443A63003D8EFC /* UIScrollViewCategoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9961F23E1F443A63003D8EFC /* UIScrollViewCategoryViewController.m */; };
+		9961F2421F443A8F003D8EFC /* UIScrollView+M4RefreshLoadMore.m in Sources */ = {isa = PBXBuildFile; fileRef = 9961F2411F443A8F003D8EFC /* UIScrollView+M4RefreshLoadMore.m */; };
 		99B067CF1F3B56960023C47E /* TestTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99B067CE1F3B56960023C47E /* TestTableViewController.m */; };
 		99B067D21F3B56B10023C47E /* ExtraView.m in Sources */ = {isa = PBXBuildFile; fileRef = 99B067D11F3B56B10023C47E /* ExtraView.m */; };
 		99B067DC1F3C62910023C47E /* MultEndStatusLoadMoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99B067DB1F3C62910023C47E /* MultEndStatusLoadMoreViewController.m */; };
@@ -105,6 +107,10 @@
 		9961F2371F443121003D8EFC /* HeaderKVORefreshView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeaderKVORefreshView.m; sourceTree = "<group>"; };
 		9961F2391F443137003D8EFC /* FooterKVOAutoLoadMoreView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FooterKVOAutoLoadMoreView.h; sourceTree = "<group>"; };
 		9961F23A1F443137003D8EFC /* FooterKVOAutoLoadMoreView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FooterKVOAutoLoadMoreView.m; sourceTree = "<group>"; };
+		9961F23D1F443A63003D8EFC /* UIScrollViewCategoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIScrollViewCategoryViewController.h; sourceTree = "<group>"; };
+		9961F23E1F443A63003D8EFC /* UIScrollViewCategoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIScrollViewCategoryViewController.m; sourceTree = "<group>"; };
+		9961F2401F443A8F003D8EFC /* UIScrollView+M4RefreshLoadMore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+M4RefreshLoadMore.h"; sourceTree = "<group>"; };
+		9961F2411F443A8F003D8EFC /* UIScrollView+M4RefreshLoadMore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+M4RefreshLoadMore.m"; sourceTree = "<group>"; };
 		99B067CD1F3B56960023C47E /* TestTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestTableViewController.h; sourceTree = "<group>"; };
 		99B067CE1F3B56960023C47E /* TestTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestTableViewController.m; sourceTree = "<group>"; };
 		99B067D01F3B56B10023C47E /* ExtraView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExtraView.h; sourceTree = "<group>"; };
@@ -237,6 +243,7 @@
 				9961F21B1F43EEC3003D8EFC /* RefreshLoadMore */,
 				9961F2251F441E9D003D8EFC /* AlwaysBottomLoadMore */,
 				9961F22C1F442FE9003D8EFC /* HeaderFooter */,
+				9961F23C1F443A44003D8EFC /* UIScrollView+ */,
 				906DFFF11F355D9A003C7775 /* Assets.xcassets */,
 				906DFFF31F355D9A003C7775 /* LaunchScreen.storyboard */,
 				906DFFF61F355D9A003C7775 /* Info.plist */,
@@ -319,6 +326,18 @@
 			);
 			name = HeaderFooter;
 			path = Sources/HeaderFooter;
+			sourceTree = "<group>";
+		};
+		9961F23C1F443A44003D8EFC /* UIScrollView+ */ = {
+			isa = PBXGroup;
+			children = (
+				9961F23D1F443A63003D8EFC /* UIScrollViewCategoryViewController.h */,
+				9961F23E1F443A63003D8EFC /* UIScrollViewCategoryViewController.m */,
+				9961F2401F443A8F003D8EFC /* UIScrollView+M4RefreshLoadMore.h */,
+				9961F2411F443A8F003D8EFC /* UIScrollView+M4RefreshLoadMore.m */,
+			);
+			name = "UIScrollView+";
+			path = "Sources/UIScrollView+";
 			sourceTree = "<group>";
 		};
 		99B067CC1F3B56960023C47E /* TestTableView */ = {
@@ -447,6 +466,7 @@
 				9961F2321F44304D003D8EFC /* Header.m in Sources */,
 				9961F21E1F43EED6003D8EFC /* RefreshLoadMoreViewController.m in Sources */,
 				906D00151F35A09A003C7775 /* KVOLoadMoreViewController.m in Sources */,
+				9961F2421F443A8F003D8EFC /* UIScrollView+M4RefreshLoadMore.m in Sources */,
 				9961F23B1F443137003D8EFC /* FooterKVOAutoLoadMoreView.m in Sources */,
 				906D00061F3568D6003C7775 /* EGORefreshView.m in Sources */,
 				90D2AA581F397292005CB22B /* KVOAutoLoadMoreView.m in Sources */,
@@ -468,6 +488,7 @@
 				99B067E61F3C8A8A0023C47E /* MultEndStatusRefreshViewController.m in Sources */,
 				9961F2381F443121003D8EFC /* HeaderKVORefreshView.m in Sources */,
 				9961F2351F443057003D8EFC /* Footer.m in Sources */,
+				9961F23F1F443A63003D8EFC /* UIScrollViewCategoryViewController.m in Sources */,
 				906DFFE71F355D9A003C7775 /* main.m in Sources */,
 				906D00031F356728003C7775 /* EGORefreshViewController.m in Sources */,
 				99B067CF1F3B56960023C47E /* TestTableViewController.m in Sources */,
