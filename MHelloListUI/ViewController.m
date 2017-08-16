@@ -19,6 +19,7 @@
 #import "ScrollObserverViewController.h"
 #import "ShorterThanScreenCanLoadMoreViewController.h"
 #import "RefreshLoadMoreViewController.h"
+#import "AlwaysBottomLoadMoreViewController.h"
 
 @interface ViewController (Table)<UITableViewDataSource, UITableViewDelegate>
 - (void)initDatas;
@@ -80,6 +81,7 @@
                    @[@"提取出ScrollObserver与contentView", [ScrollObserverViewController class]],
                    @[@"不满一屏也可以上滑加载", [ShorterThanScreenCanLoadMoreViewController class]],
                    @[@"刷新+加载", [RefreshLoadMoreViewController class]],
+                   @[@"上滑控件始终在屏幕底部", [AlwaysBottomLoadMoreViewController class]],
                    ];
 }
 

@@ -29,6 +29,8 @@
 		9961F21E1F43EED6003D8EFC /* RefreshLoadMoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9961F21D1F43EED6003D8EFC /* RefreshLoadMoreViewController.m */; };
 		9961F2211F43F170003D8EFC /* GroupKVORefreshView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9961F2201F43F170003D8EFC /* GroupKVORefreshView.m */; };
 		9961F2241F43F187003D8EFC /* GroupKVOAutoLoadMoreView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9961F2231F43F187003D8EFC /* GroupKVOAutoLoadMoreView.m */; };
+		9961F2281F441EC1003D8EFC /* AlwaysBottomLoadMoreView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9961F2271F441EC1003D8EFC /* AlwaysBottomLoadMoreView.m */; };
+		9961F22B1F441ECD003D8EFC /* AlwaysBottomLoadMoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9961F22A1F441ECD003D8EFC /* AlwaysBottomLoadMoreViewController.m */; };
 		99B067CF1F3B56960023C47E /* TestTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99B067CE1F3B56960023C47E /* TestTableViewController.m */; };
 		99B067D21F3B56B10023C47E /* ExtraView.m in Sources */ = {isa = PBXBuildFile; fileRef = 99B067D11F3B56B10023C47E /* ExtraView.m */; };
 		99B067DC1F3C62910023C47E /* MultEndStatusLoadMoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99B067DB1F3C62910023C47E /* MultEndStatusLoadMoreViewController.m */; };
@@ -84,6 +86,10 @@
 		9961F2201F43F170003D8EFC /* GroupKVORefreshView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupKVORefreshView.m; sourceTree = "<group>"; };
 		9961F2221F43F187003D8EFC /* GroupKVOAutoLoadMoreView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupKVOAutoLoadMoreView.h; sourceTree = "<group>"; };
 		9961F2231F43F187003D8EFC /* GroupKVOAutoLoadMoreView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupKVOAutoLoadMoreView.m; sourceTree = "<group>"; };
+		9961F2261F441EC1003D8EFC /* AlwaysBottomLoadMoreView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlwaysBottomLoadMoreView.h; sourceTree = "<group>"; };
+		9961F2271F441EC1003D8EFC /* AlwaysBottomLoadMoreView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlwaysBottomLoadMoreView.m; sourceTree = "<group>"; };
+		9961F2291F441ECD003D8EFC /* AlwaysBottomLoadMoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlwaysBottomLoadMoreViewController.h; sourceTree = "<group>"; };
+		9961F22A1F441ECD003D8EFC /* AlwaysBottomLoadMoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlwaysBottomLoadMoreViewController.m; sourceTree = "<group>"; };
 		99B067CD1F3B56960023C47E /* TestTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestTableViewController.h; sourceTree = "<group>"; };
 		99B067CE1F3B56960023C47E /* TestTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestTableViewController.m; sourceTree = "<group>"; };
 		99B067D01F3B56B10023C47E /* ExtraView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExtraView.h; sourceTree = "<group>"; };
@@ -214,6 +220,7 @@
 				99B067E71F3D505E0023C47E /* ScrollObserver */,
 				9961F2101F42AB94003D8EFC /* ShorterThanScreenCanLoadMore */,
 				9961F21B1F43EEC3003D8EFC /* RefreshLoadMore */,
+				9961F2251F441E9D003D8EFC /* AlwaysBottomLoadMore */,
 				906DFFF11F355D9A003C7775 /* Assets.xcassets */,
 				906DFFF31F355D9A003C7775 /* LaunchScreen.storyboard */,
 				906DFFF61F355D9A003C7775 /* Info.plist */,
@@ -266,6 +273,18 @@
 			);
 			name = RefreshLoadMore;
 			path = Sources/RefreshLoadMore;
+			sourceTree = "<group>";
+		};
+		9961F2251F441E9D003D8EFC /* AlwaysBottomLoadMore */ = {
+			isa = PBXGroup;
+			children = (
+				9961F2291F441ECD003D8EFC /* AlwaysBottomLoadMoreViewController.h */,
+				9961F22A1F441ECD003D8EFC /* AlwaysBottomLoadMoreViewController.m */,
+				9961F2261F441EC1003D8EFC /* AlwaysBottomLoadMoreView.h */,
+				9961F2271F441EC1003D8EFC /* AlwaysBottomLoadMoreView.m */,
+			);
+			name = AlwaysBottomLoadMore;
+			path = Sources/AlwaysBottomLoadMore;
 			sourceTree = "<group>";
 		};
 		99B067CC1F3B56960023C47E /* TestTableView */ = {
@@ -397,6 +416,7 @@
 				90D2AA581F397292005CB22B /* KVOAutoLoadMoreView.m in Sources */,
 				906D000E1F358E79003C7775 /* KVORefreshViewController.m in Sources */,
 				99B067D21F3B56B10023C47E /* ExtraView.m in Sources */,
+				9961F2281F441EC1003D8EFC /* AlwaysBottomLoadMoreView.m in Sources */,
 				906D00111F358E89003C7775 /* KVORefreshView.m in Sources */,
 				906DFFEA1F355D9A003C7775 /* AppDelegate.m in Sources */,
 				99B067DC1F3C62910023C47E /* MultEndStatusLoadMoreViewController.m in Sources */,
@@ -417,6 +437,7 @@
 				9961F2211F43F170003D8EFC /* GroupKVORefreshView.m in Sources */,
 				90D2AA5B1F397356005CB22B /* KVOAutoLoadMoreViewController.m in Sources */,
 				9961F2161F42AC25003D8EFC /* ShorterThanScreenCanLoadMoreView.m in Sources */,
+				9961F22B1F441ECD003D8EFC /* AlwaysBottomLoadMoreViewController.m in Sources */,
 				99B067F31F3D553D0023C47E /* ScrollObserverViewController.m in Sources */,
 				99B067F71F3D60E30023C47E /* ObserverRefreshContentView.m in Sources */,
 			);
