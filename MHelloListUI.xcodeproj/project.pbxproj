@@ -31,6 +31,11 @@
 		9961F2241F43F187003D8EFC /* GroupKVOAutoLoadMoreView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9961F2231F43F187003D8EFC /* GroupKVOAutoLoadMoreView.m */; };
 		9961F2281F441EC1003D8EFC /* AlwaysBottomLoadMoreView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9961F2271F441EC1003D8EFC /* AlwaysBottomLoadMoreView.m */; };
 		9961F22B1F441ECD003D8EFC /* AlwaysBottomLoadMoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9961F22A1F441ECD003D8EFC /* AlwaysBottomLoadMoreViewController.m */; };
+		9961F22F1F442FFA003D8EFC /* HeaderFooterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9961F22E1F442FFA003D8EFC /* HeaderFooterViewController.m */; };
+		9961F2321F44304D003D8EFC /* Header.m in Sources */ = {isa = PBXBuildFile; fileRef = 9961F2311F44304D003D8EFC /* Header.m */; };
+		9961F2351F443057003D8EFC /* Footer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9961F2341F443057003D8EFC /* Footer.m */; };
+		9961F2381F443121003D8EFC /* HeaderKVORefreshView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9961F2371F443121003D8EFC /* HeaderKVORefreshView.m */; };
+		9961F23B1F443137003D8EFC /* FooterKVOAutoLoadMoreView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9961F23A1F443137003D8EFC /* FooterKVOAutoLoadMoreView.m */; };
 		99B067CF1F3B56960023C47E /* TestTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99B067CE1F3B56960023C47E /* TestTableViewController.m */; };
 		99B067D21F3B56B10023C47E /* ExtraView.m in Sources */ = {isa = PBXBuildFile; fileRef = 99B067D11F3B56B10023C47E /* ExtraView.m */; };
 		99B067DC1F3C62910023C47E /* MultEndStatusLoadMoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99B067DB1F3C62910023C47E /* MultEndStatusLoadMoreViewController.m */; };
@@ -90,6 +95,16 @@
 		9961F2271F441EC1003D8EFC /* AlwaysBottomLoadMoreView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlwaysBottomLoadMoreView.m; sourceTree = "<group>"; };
 		9961F2291F441ECD003D8EFC /* AlwaysBottomLoadMoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlwaysBottomLoadMoreViewController.h; sourceTree = "<group>"; };
 		9961F22A1F441ECD003D8EFC /* AlwaysBottomLoadMoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlwaysBottomLoadMoreViewController.m; sourceTree = "<group>"; };
+		9961F22D1F442FFA003D8EFC /* HeaderFooterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeaderFooterViewController.h; sourceTree = "<group>"; };
+		9961F22E1F442FFA003D8EFC /* HeaderFooterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeaderFooterViewController.m; sourceTree = "<group>"; };
+		9961F2301F44304D003D8EFC /* Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
+		9961F2311F44304D003D8EFC /* Header.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Header.m; sourceTree = "<group>"; };
+		9961F2331F443057003D8EFC /* Footer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Footer.h; sourceTree = "<group>"; };
+		9961F2341F443057003D8EFC /* Footer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Footer.m; sourceTree = "<group>"; };
+		9961F2361F443121003D8EFC /* HeaderKVORefreshView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeaderKVORefreshView.h; sourceTree = "<group>"; };
+		9961F2371F443121003D8EFC /* HeaderKVORefreshView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeaderKVORefreshView.m; sourceTree = "<group>"; };
+		9961F2391F443137003D8EFC /* FooterKVOAutoLoadMoreView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FooterKVOAutoLoadMoreView.h; sourceTree = "<group>"; };
+		9961F23A1F443137003D8EFC /* FooterKVOAutoLoadMoreView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FooterKVOAutoLoadMoreView.m; sourceTree = "<group>"; };
 		99B067CD1F3B56960023C47E /* TestTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestTableViewController.h; sourceTree = "<group>"; };
 		99B067CE1F3B56960023C47E /* TestTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestTableViewController.m; sourceTree = "<group>"; };
 		99B067D01F3B56B10023C47E /* ExtraView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExtraView.h; sourceTree = "<group>"; };
@@ -221,6 +236,7 @@
 				9961F2101F42AB94003D8EFC /* ShorterThanScreenCanLoadMore */,
 				9961F21B1F43EEC3003D8EFC /* RefreshLoadMore */,
 				9961F2251F441E9D003D8EFC /* AlwaysBottomLoadMore */,
+				9961F22C1F442FE9003D8EFC /* HeaderFooter */,
 				906DFFF11F355D9A003C7775 /* Assets.xcassets */,
 				906DFFF31F355D9A003C7775 /* LaunchScreen.storyboard */,
 				906DFFF61F355D9A003C7775 /* Info.plist */,
@@ -285,6 +301,24 @@
 			);
 			name = AlwaysBottomLoadMore;
 			path = Sources/AlwaysBottomLoadMore;
+			sourceTree = "<group>";
+		};
+		9961F22C1F442FE9003D8EFC /* HeaderFooter */ = {
+			isa = PBXGroup;
+			children = (
+				9961F22D1F442FFA003D8EFC /* HeaderFooterViewController.h */,
+				9961F22E1F442FFA003D8EFC /* HeaderFooterViewController.m */,
+				9961F2361F443121003D8EFC /* HeaderKVORefreshView.h */,
+				9961F2371F443121003D8EFC /* HeaderKVORefreshView.m */,
+				9961F2301F44304D003D8EFC /* Header.h */,
+				9961F2311F44304D003D8EFC /* Header.m */,
+				9961F2391F443137003D8EFC /* FooterKVOAutoLoadMoreView.h */,
+				9961F23A1F443137003D8EFC /* FooterKVOAutoLoadMoreView.m */,
+				9961F2331F443057003D8EFC /* Footer.h */,
+				9961F2341F443057003D8EFC /* Footer.m */,
+			);
+			name = HeaderFooter;
+			path = Sources/HeaderFooter;
 			sourceTree = "<group>";
 		};
 		99B067CC1F3B56960023C47E /* TestTableView */ = {
@@ -410,8 +444,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				906DFFED1F355D9A003C7775 /* ViewController.m in Sources */,
+				9961F2321F44304D003D8EFC /* Header.m in Sources */,
 				9961F21E1F43EED6003D8EFC /* RefreshLoadMoreViewController.m in Sources */,
 				906D00151F35A09A003C7775 /* KVOLoadMoreViewController.m in Sources */,
+				9961F23B1F443137003D8EFC /* FooterKVOAutoLoadMoreView.m in Sources */,
 				906D00061F3568D6003C7775 /* EGORefreshView.m in Sources */,
 				90D2AA581F397292005CB22B /* KVOAutoLoadMoreView.m in Sources */,
 				906D000E1F358E79003C7775 /* KVORefreshViewController.m in Sources */,
@@ -423,12 +459,15 @@
 				9961F2241F43F187003D8EFC /* GroupKVOAutoLoadMoreView.m in Sources */,
 				906D001F1F396DC7003C7775 /* RefreshView.m in Sources */,
 				9961F2131F42AC12003D8EFC /* ShorterThanScreenCanLoadMoreViewController.m in Sources */,
+				9961F22F1F442FFA003D8EFC /* HeaderFooterViewController.m in Sources */,
 				99B067E31F3C8A7F0023C47E /* MultEndStatusRefreshView.m in Sources */,
 				906D000A1F357711003C7775 /* M7TempDataGenerator.m in Sources */,
 				99B067DF1F3C62AF0023C47E /* MultEndStatusLoadMoreView.m in Sources */,
 				99B067EA1F3D51170023C47E /* M2ScrollViewObserver.m in Sources */,
 				906D00181F35A0AC003C7775 /* KVOLoadMoreView.m in Sources */,
 				99B067E61F3C8A8A0023C47E /* MultEndStatusRefreshViewController.m in Sources */,
+				9961F2381F443121003D8EFC /* HeaderKVORefreshView.m in Sources */,
+				9961F2351F443057003D8EFC /* Footer.m in Sources */,
 				906DFFE71F355D9A003C7775 /* main.m in Sources */,
 				906D00031F356728003C7775 /* EGORefreshViewController.m in Sources */,
 				99B067CF1F3B56960023C47E /* TestTableViewController.m in Sources */,
