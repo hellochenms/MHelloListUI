@@ -18,6 +18,7 @@
 #import "MultEndStatusRefreshViewController.h"
 #import "ScrollObserverViewController.h"
 #import "ShorterThanScreenCanLoadMoreViewController.h"
+#import "RefreshLoadMoreViewController.h"
 
 @interface ViewController (Table)<UITableViewDataSource, UITableViewDelegate>
 - (void)initDatas;
@@ -78,6 +79,7 @@
                    @[@"刷新有多种状态", [MultEndStatusRefreshViewController class]],
                    @[@"提取出ScrollObserver与contentView", [ScrollObserverViewController class]],
                    @[@"不满一屏也可以上滑加载", [ShorterThanScreenCanLoadMoreViewController class]],
+                   @[@"刷新+加载", [RefreshLoadMoreViewController class]],
                    ];
 }
 

@@ -26,6 +26,9 @@
 		90D2AA5B1F397356005CB22B /* KVOAutoLoadMoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90D2AA5A1F397356005CB22B /* KVOAutoLoadMoreViewController.m */; };
 		9961F2131F42AC12003D8EFC /* ShorterThanScreenCanLoadMoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9961F2121F42AC12003D8EFC /* ShorterThanScreenCanLoadMoreViewController.m */; };
 		9961F2161F42AC25003D8EFC /* ShorterThanScreenCanLoadMoreView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9961F2151F42AC25003D8EFC /* ShorterThanScreenCanLoadMoreView.m */; };
+		9961F21E1F43EED6003D8EFC /* RefreshLoadMoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9961F21D1F43EED6003D8EFC /* RefreshLoadMoreViewController.m */; };
+		9961F2211F43F170003D8EFC /* GroupKVORefreshView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9961F2201F43F170003D8EFC /* GroupKVORefreshView.m */; };
+		9961F2241F43F187003D8EFC /* GroupKVOAutoLoadMoreView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9961F2231F43F187003D8EFC /* GroupKVOAutoLoadMoreView.m */; };
 		99B067CF1F3B56960023C47E /* TestTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99B067CE1F3B56960023C47E /* TestTableViewController.m */; };
 		99B067D21F3B56B10023C47E /* ExtraView.m in Sources */ = {isa = PBXBuildFile; fileRef = 99B067D11F3B56B10023C47E /* ExtraView.m */; };
 		99B067DC1F3C62910023C47E /* MultEndStatusLoadMoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99B067DB1F3C62910023C47E /* MultEndStatusLoadMoreViewController.m */; };
@@ -75,6 +78,12 @@
 		9961F2121F42AC12003D8EFC /* ShorterThanScreenCanLoadMoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShorterThanScreenCanLoadMoreViewController.m; sourceTree = "<group>"; };
 		9961F2141F42AC25003D8EFC /* ShorterThanScreenCanLoadMoreView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShorterThanScreenCanLoadMoreView.h; sourceTree = "<group>"; };
 		9961F2151F42AC25003D8EFC /* ShorterThanScreenCanLoadMoreView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShorterThanScreenCanLoadMoreView.m; sourceTree = "<group>"; };
+		9961F21C1F43EED6003D8EFC /* RefreshLoadMoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RefreshLoadMoreViewController.h; sourceTree = "<group>"; };
+		9961F21D1F43EED6003D8EFC /* RefreshLoadMoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RefreshLoadMoreViewController.m; sourceTree = "<group>"; };
+		9961F21F1F43F170003D8EFC /* GroupKVORefreshView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupKVORefreshView.h; sourceTree = "<group>"; };
+		9961F2201F43F170003D8EFC /* GroupKVORefreshView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupKVORefreshView.m; sourceTree = "<group>"; };
+		9961F2221F43F187003D8EFC /* GroupKVOAutoLoadMoreView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupKVOAutoLoadMoreView.h; sourceTree = "<group>"; };
+		9961F2231F43F187003D8EFC /* GroupKVOAutoLoadMoreView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupKVOAutoLoadMoreView.m; sourceTree = "<group>"; };
 		99B067CD1F3B56960023C47E /* TestTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestTableViewController.h; sourceTree = "<group>"; };
 		99B067CE1F3B56960023C47E /* TestTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestTableViewController.m; sourceTree = "<group>"; };
 		99B067D01F3B56B10023C47E /* ExtraView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExtraView.h; sourceTree = "<group>"; };
@@ -204,6 +213,7 @@
 				99B067E01F3C8A700023C47E /* MultEndStatusRefresh */,
 				99B067E71F3D505E0023C47E /* ScrollObserver */,
 				9961F2101F42AB94003D8EFC /* ShorterThanScreenCanLoadMore */,
+				9961F21B1F43EEC3003D8EFC /* RefreshLoadMore */,
 				906DFFF11F355D9A003C7775 /* Assets.xcassets */,
 				906DFFF31F355D9A003C7775 /* LaunchScreen.storyboard */,
 				906DFFF61F355D9A003C7775 /* Info.plist */,
@@ -242,6 +252,20 @@
 			);
 			name = ShorterThanScreenCanLoadMore;
 			path = Sources/ShorterThanScreenCanLoadMore;
+			sourceTree = "<group>";
+		};
+		9961F21B1F43EEC3003D8EFC /* RefreshLoadMore */ = {
+			isa = PBXGroup;
+			children = (
+				9961F21C1F43EED6003D8EFC /* RefreshLoadMoreViewController.h */,
+				9961F21D1F43EED6003D8EFC /* RefreshLoadMoreViewController.m */,
+				9961F21F1F43F170003D8EFC /* GroupKVORefreshView.h */,
+				9961F2201F43F170003D8EFC /* GroupKVORefreshView.m */,
+				9961F2221F43F187003D8EFC /* GroupKVOAutoLoadMoreView.h */,
+				9961F2231F43F187003D8EFC /* GroupKVOAutoLoadMoreView.m */,
+			);
+			name = RefreshLoadMore;
+			path = Sources/RefreshLoadMore;
 			sourceTree = "<group>";
 		};
 		99B067CC1F3B56960023C47E /* TestTableView */ = {
@@ -367,6 +391,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				906DFFED1F355D9A003C7775 /* ViewController.m in Sources */,
+				9961F21E1F43EED6003D8EFC /* RefreshLoadMoreViewController.m in Sources */,
 				906D00151F35A09A003C7775 /* KVOLoadMoreViewController.m in Sources */,
 				906D00061F3568D6003C7775 /* EGORefreshView.m in Sources */,
 				90D2AA581F397292005CB22B /* KVOAutoLoadMoreView.m in Sources */,
@@ -375,6 +400,7 @@
 				906D00111F358E89003C7775 /* KVORefreshView.m in Sources */,
 				906DFFEA1F355D9A003C7775 /* AppDelegate.m in Sources */,
 				99B067DC1F3C62910023C47E /* MultEndStatusLoadMoreViewController.m in Sources */,
+				9961F2241F43F187003D8EFC /* GroupKVOAutoLoadMoreView.m in Sources */,
 				906D001F1F396DC7003C7775 /* RefreshView.m in Sources */,
 				9961F2131F42AC12003D8EFC /* ShorterThanScreenCanLoadMoreViewController.m in Sources */,
 				99B067E31F3C8A7F0023C47E /* MultEndStatusRefreshView.m in Sources */,
@@ -388,6 +414,7 @@
 				99B067CF1F3B56960023C47E /* TestTableViewController.m in Sources */,
 				906D001C1F396DA5003C7775 /* RefreshViewController.m in Sources */,
 				99B067ED1F3D55060023C47E /* ObserverRefreshView.m in Sources */,
+				9961F2211F43F170003D8EFC /* GroupKVORefreshView.m in Sources */,
 				90D2AA5B1F397356005CB22B /* KVOAutoLoadMoreViewController.m in Sources */,
 				9961F2161F42AC25003D8EFC /* ShorterThanScreenCanLoadMoreView.m in Sources */,
 				99B067F31F3D553D0023C47E /* ScrollObserverViewController.m in Sources */,

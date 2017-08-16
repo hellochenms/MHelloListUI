@@ -1,12 +1,12 @@
 //
-//  KVOAutoLoadMoreView.m
+//  GroupGroupKVOAutoLoadMoreView.m
 //  MHelloListUI
 //
-//  Created by chenms on 17/8/8.
+//  Created by Chen,Meisong on 2017/8/16.
 //  Copyright © 2017年 chenms.m2. All rights reserved.
 //
 
-#import "KVOAutoLoadMoreView.h"
+#import "GroupKVOAutoLoadMoreView.h"
 
 static double const kHeight = 60;
 static double const kAnimationDuration = .2;
@@ -14,20 +14,20 @@ static double const kAnimationDuration = .2;
 static NSString * const kKeyPathContentOffset = @"contentOffset";
 static NSString * const kKeyPathContentSize = @"contentSize";
 
-typedef NS_ENUM(NSUInteger, KVOAutoLoadMoreViewStatus) {
-    KVOAutoLoadMoreViewStatusNormal = 0,
-    KVOAutoLoadMoreViewStatusLoading,
+typedef NS_ENUM(NSUInteger, GroupKVOAutoLoadMoreViewStatus) {
+    GroupKVOAutoLoadMoreViewStatusNormal = 0,
+    GroupKVOAutoLoadMoreViewStatusLoading,
 };
 
-@interface KVOAutoLoadMoreView ()
-@property (nonatomic) KVOAutoLoadMoreViewStatus status;
+@interface GroupKVOAutoLoadMoreView ()
+@property (nonatomic) GroupKVOAutoLoadMoreViewStatus status;
 @property (nonatomic) UILabel *label;
 @property (nonatomic, weak) UIScrollView *scrollView;
 @property (nonatomic) BOOL originalAlwaysBounceVertical;
 @end
 
 
-@implementation KVOAutoLoadMoreView
+@implementation GroupKVOAutoLoadMoreView
 
 + (instancetype)loadMoreView {
     return [self new];
@@ -37,7 +37,7 @@ typedef NS_ENUM(NSUInteger, KVOAutoLoadMoreViewStatus) {
     self = [super initWithFrame:CGRectMake(0, 0, CGRectGetWidth([UIScreen mainScreen].bounds), kHeight)];
     if (self) {
         self.backgroundColor = [UIColor brownColor];
-        self.status = KVOAutoLoadMoreViewStatusNormal;
+        self.status = GroupKVOAutoLoadMoreViewStatusNormal;
         
         [self addSubview:self.label];
         self.label.frame = self.bounds;
@@ -93,7 +93,7 @@ typedef NS_ENUM(NSUInteger, KVOAutoLoadMoreViewStatus) {
     if (self.hidden) {
         return;
     }
-    if (self.status == KVOAutoLoadMoreViewStatusLoading) {
+    if (self.status == GroupKVOAutoLoadMoreViewStatusLoading) {
         UIEdgeInsets inset = scrollView.contentInset;
         inset.bottom = fmin(fmax(CGRectGetHeight(self.scrollView.bounds) + scrollView.contentOffset.y - self.scrollView.contentSize.height, 0), kHeight);
         scrollView.contentInset = inset;
@@ -104,10 +104,14 @@ typedef NS_ENUM(NSUInteger, KVOAutoLoadMoreViewStatus) {
         return;
     }
     
+    if (self.canLoadMore && !self.canLoadMore()) {
+        return;
+    }
+    
     if (CGRectGetHeight(self.scrollView.bounds) + scrollView.contentOffset.y - self.scrollView.contentSize.height > kHeight) {
-        if (self.status == KVOAutoLoadMoreViewStatusNormal) {
+        if (self.status == GroupKVOAutoLoadMoreViewStatusNormal) {
             if (self.didTriggerLoadMoreBlock) {
-                self.status = KVOAutoLoadMoreViewStatusLoading;
+                self.status = GroupKVOAutoLoadMoreViewStatusLoading;
                 UIEdgeInsets inset = scrollView.contentInset;
                 inset.bottom = kHeight;
                 scrollView.contentInset = inset;
@@ -131,7 +135,7 @@ typedef NS_ENUM(NSUInteger, KVOAutoLoadMoreViewStatus) {
 
 #pragma mark - Public
 - (void)endLoadMore {
-    self.status = KVOAutoLoadMoreViewStatusNormal;
+    self.status = GroupKVOAutoLoadMoreViewStatusNormal;
     
     [UIView animateWithDuration:kAnimationDuration animations:^{
         UIEdgeInsets inset = self.scrollView.contentInset;
@@ -142,14 +146,14 @@ typedef NS_ENUM(NSUInteger, KVOAutoLoadMoreViewStatus) {
 
 
 #pragma mark - Status
-- (void)setStatus:(KVOAutoLoadMoreViewStatus)status {
+- (void)setStatus:(GroupKVOAutoLoadMoreViewStatus)status {
     _status = status;
     
     switch (status) {
-        case KVOAutoLoadMoreViewStatusNormal:
+        case GroupKVOAutoLoadMoreViewStatusNormal:
             self.label.text = @"上拉即可加载";
             break;
-        case KVOAutoLoadMoreViewStatusLoading:
+        case GroupKVOAutoLoadMoreViewStatusLoading:
             self.label.text = @"加载中";
             break;
         default:
